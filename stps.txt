@@ -1,0 +1,7 @@
+done with core two routes to create a protected url , and return and store correspnding slug . 
+
+Now the next part , is that maybe add teacher table , and tie created test to teahcer , and also add auth. 
+Then the later backend focu should be on creating a route to report the violations . 
+
+now added the violation table , and the endpoint to increment the counter of violation type . 
+-- Have kept the schema to store images later on in the violation eveidece table. 

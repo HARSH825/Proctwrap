@@ -1,3 +1,5 @@
+import prisma from "../config/prisma.js";
+
 const getTest = async (req, res) => {
 
   const { slug } = req.params;
@@ -12,6 +14,7 @@ const getTest = async (req, res) => {
     }
 
     res.json({
+        id: test.id,
       title: test.title,
       url: test.url,
     });

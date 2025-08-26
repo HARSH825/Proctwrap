@@ -1,5 +1,5 @@
 import express from "express";
-import { startAttempt, finishAttempt } from "../controllers/attemptController.js";
+import { startAttempt, finishAttempt } from "../controllers/attempt.js";
 
 const router = express.Router();
 

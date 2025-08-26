@@ -1,6 +1,6 @@
-import prisma from "../config/prisma";
+import prisma from "../config/prisma.js";
 
-const violation =  async (req, res) => {
+const violation = async (req, res) => {
   const { id } = req.params;
   const { type } = req.body;
 
