@@ -1,6 +1,8 @@
-import express from 'express';
+import express, { Router } from 'express';
 import violation from '../controllers/violation';
 
-const app = express.Router();
+const router = express.Router();
 
-app.patch('/attempts/:id/violation',violation);
+router.patch('/attempts/:id/violation',violation);
+
+export default router;

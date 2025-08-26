@@ -3,13 +3,13 @@ import prisma from '../config/prisma';
 
 const createTest = async (req , res)=>{
 
-    const {title, url } = req.body;
+    const {title, url ,teacherId} = req.body;
 
     try{
         const slug = nanoid(6);
         
         await prisma.test.create({
-            data:{title , url , slug}
+            data:{title , url , slug , teacherId}
         });
 
         const protectedUrl = `${process.env.FE_URL}/p/${slug}`;

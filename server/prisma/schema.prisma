@@ -7,35 +7,60 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Teacher {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  name      String
+  email     String   @unique
+  password  String   // hashed password
+  tests     Test[]
+}
+
 model Test {
   id        String     @id @default(cuid())
   createdAt DateTime   @default(now())
   title     String
   url       String
   slug      String     @unique
+  teacherId String
+  teacher   Teacher    @relation(fields: [teacherId], references: [id])
+  attempts  Attempt[]
+
+  @@index([teacherId])
+}
+
+model Student {
+  id        String     @id @default(cuid())
+  createdAt DateTime   @default(now())
+  name      String
+  email     String
+  uid       String     @unique
   attempts  Attempt[]
 }
 
 model Attempt {
-  id           String       @id @default(cuid())
-  studentName  String
-  studentEmail String
-  startedAt    DateTime     @default(now())
-  finishedAt   DateTime?
-  testId       String
-  test         Test         @relation(fields: [testId], references: [id])
+  id         String     @id @default(cuid())
+  startedAt  DateTime   @default(now())
+  finishedAt DateTime?
+  testId     String
+  test       Test       @relation(fields: [testId], references: [id])
+  studentId  String
+  student    Student    @relation(fields: [studentId], references: [id])
 
-  // phase-1
-  tabSwitchCount        Int @default(0)
-  fullscreenExitCount   Int @default(0)
-  multipleFacesCount    Int @default(0)
-  phoneDetectionCount   Int @default(0)
+  // Phase 1 — just counters
+  tabSwitchCount      Int @default(0)
+  fullscreenExitCount Int @default(0)
+  multipleFacesCount  Int @default(0)
+  phoneDetectionCount Int @default(0)
 
-  //phase-2
-  tabSwitchEvidence     TabSwitchEvidence[]
+  // Phase 2 — evidence
+  tabSwitchEvidence      TabSwitchEvidence[]
   fullscreenExitEvidence FullscreenExitEvidence[]
-  multipleFacesEvidence MultipleFacesEvidence[]
+  multipleFacesEvidence  MultipleFacesEvidence[]
   phoneDetectionEvidence PhoneDetectionEvidence[]
+
+  @@index([testId])
+  @@index([studentId])
 }
 
 model TabSwitchEvidence {
@@ -44,6 +69,8 @@ model TabSwitchEvidence {
   createdAt DateTime @default(now())
   attemptId String
   attempt   Attempt  @relation(fields: [attemptId], references: [id])
+
+  @@index([attemptId])
 }
 
 model FullscreenExitEvidence {
@@ -52,6 +79,8 @@ model FullscreenExitEvidence {
   createdAt DateTime @default(now())
   attemptId String
   attempt   Attempt  @relation(fields: [attemptId], references: [id])
+
+  @@index([attemptId])
 }
 
 model MultipleFacesEvidence {
@@ -60,6 +89,8 @@ model MultipleFacesEvidence {
   createdAt DateTime @default(now())
   attemptId String
   attempt   Attempt  @relation(fields: [attemptId], references: [id])
+
+  @@index([attemptId])
 }
 
 model PhoneDetectionEvidence {
@@ -68,4 +99,6 @@ model PhoneDetectionEvidence {
   createdAt DateTime @default(now())
   attemptId String
   attempt   Attempt  @relation(fields: [attemptId], references: [id])
+
+  @@index([attemptId])
 }
