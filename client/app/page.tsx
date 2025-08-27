@@ -262,10 +262,10 @@ export default function HomePage() {
       <section className="hero-section py-20 lg:py-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-4xl mx-auto">
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-8">
+            {/* <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-8">
               <Star className="h-4 w-4 text-primary mr-2" />
               <span className="text-sm font-medium text-primary">Trusted by 1,200+ Educational Institutions</span>
-            </div>
+            </div> */}
             <h1 className="text-4xl lg:text-5xl font-bold text-text mb-6 leading-tight">
               Stop Cheating Before It 
               <span className="text-gradient block lg:inline"> Even Starts</span>
@@ -296,7 +296,7 @@ export default function HomePage() {
                 <div className="text-sm text-text-muted">Downloads</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-primary">24/7</div>
+                <div className="text-2xl font-bold text-primary">Robust</div>
                 <div className="text-sm text-text-muted">AI Monitoring</div>
               </div>
             </div>
@@ -514,7 +514,7 @@ export default function HomePage() {
         <div className="flex -space-x-2">{[1,2,3,4,5].map(i => (
           <Star key={i} className="h-5 w-5 text-warning fill-current" />
         ))}</div>
-        <span className="text-text-secondary">4.9/5 from 1,200+ educators</span>
+        <span className="text-text-secondary">4.9/5 from 1,200+ educators and partners</span>
       </div>
     </div>
   </div>
