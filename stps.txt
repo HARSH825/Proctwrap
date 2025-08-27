@@ -1,9 +1,9 @@
 done with core two routes to create a protected url , and return and store correspnding slug . 
 
 Now the next part , is that maybe add teacher table , and tie created test to teahcer , and also add auth. 
-Then the later backend focu should be on creating a route to report the violations . 
+DONE: Then the later backend focu should be on creating a route to report the violations . 
 
-now added the violation table , and the endpoint to increment the counter of violation type . 
+DONE: now added the violation table , and the endpoint to increment the counter of violation type . 
 -- Have kept the schema to store images later on in the violation eveidece table. 
 
 
@@ -12,7 +12,7 @@ DONE : --needless to show everything on scren , need to make ui of test pretty .
 -- need to give proper guidelines before starting the test . 
 
 
--- In phase-2 , need to add permission to take user permission to allow screen share and then share screenshots on violations , but not doing this now .Will do later once complete mvp ready . 
+--DONE :  In phase-2 , need to add permission to take user permission to allow screen share and then share screenshots on violations , but not doing this now .Will do later once complete mvp ready . 
 
 
 LATER: right click band , shortcuts band  . 
@@ -26,7 +26,7 @@ LATER: -- Option to extract the test details in a google sheet , and also sortin
 
 LATER: --trust score 
 
-NEXT : --identity verification at start , by capturing a picture  when start test. 
+LATER : --identity verification at start , by capturing a picture  when start test. 
 
 LATER : --ip of user .(Possibility to filter out ips which is/are uique from most others )
 
