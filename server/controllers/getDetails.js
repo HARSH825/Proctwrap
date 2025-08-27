@@ -37,17 +37,19 @@ export const getTestAttempts = async (req, res) => {
   }
 };
 
-
 export const getAttemptDetails = async (req, res) => {
   try {
     const { id } = req.params;
-
+    
     const attempt = await prisma.attempt.findUnique({
       where: { id },
       include: {
         student: true,
         test: true,
-        // phase-2 (eveidence details )
+        tabSwitchEvidence: true,
+        fullscreenExitEvidence: true,
+        multipleFacesEvidence: true,
+        phoneDetectionEvidence: true,
       },
     });
 
@@ -61,3 +63,4 @@ export const getAttemptDetails = async (req, res) => {
     res.status(500).json({ error: "Something went wrong" });
   }
 };
+
