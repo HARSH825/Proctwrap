@@ -3,14 +3,12 @@ import prisma from "../config/prisma.js";
 export const getTeacherTests = async (req, res) => {
   try {
     const { teacherId } = req.params;
-
     const tests = await prisma.test.findMany({
       where: { teacherId },
       include: {
         attempts: true,
       },
     });
-
     res.json(tests);
   } catch (error) {
     console.error("Error fetching tests:", error);
@@ -18,19 +16,33 @@ export const getTeacherTests = async (req, res) => {
   }
 };
 
-
 export const getTestAttempts = async (req, res) => {
   try {
     const { testId } = req.params;
-
     const attempts = await prisma.attempt.findMany({
       where: { testId },
       include: {
         student: true,
+        _count: {
+          select: {
+            tabSwitchEvidence: true,
+            fullscreenExitEvidence: true,
+            multipleFacesEvidence: true,
+            phoneDetectionEvidence: true,
+          }
+        }
       },
     });
 
-    res.json(attempts);
+    const formattedAttempts = attempts.map(attempt => ({
+      ...attempt,
+      totalEvidences: attempt._count.tabSwitchEvidence + 
+                     attempt._count.fullscreenExitEvidence +
+                     attempt._count.multipleFacesEvidence + 
+                     attempt._count.phoneDetectionEvidence
+    }));
+
+    res.json(formattedAttempts);
   } catch (error) {
     console.error("Error fetching attempts:", error);
     res.status(500).json({ error: "Something went wrong" });
@@ -40,7 +52,6 @@ export const getTestAttempts = async (req, res) => {
 export const getAttemptDetails = async (req, res) => {
   try {
     const { id } = req.params;
-    
     const attempt = await prisma.attempt.findUnique({
       where: { id },
       include: {
@@ -63,4 +74,3 @@ export const getAttemptDetails = async (req, res) => {
     res.status(500).json({ error: "Something went wrong" });
   }
 };
-

@@ -6,6 +6,7 @@ import testRouter from './routes/testRouter.js';
 import teacherRouter from './routes/teacherRoute.js';
 import studentRouter from './routes/studentRotue.js';
 import attemptRouter from './routes/attemptRoute.js';
+import evidenceRouter from './routes/evidenceRoute.js';
 
 dotenv.config();
 
@@ -27,6 +28,6 @@ app.use('/v1/teacher', teacherRouter);
 app.use('/v1/violation', violationRouter);
 app.use('/v1/student', studentRouter);
 app.use('/v1/attempt', attemptRouter);
-
+app.use('/v1/evidence',evidenceRouter);
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

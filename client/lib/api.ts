@@ -70,3 +70,8 @@ export const attemptAPI = {
   recordViolation: (attemptId: string, type: string, image?: string | null) =>
     api.patch(`/v1/violation/attempts/${attemptId}/violation`, { type, image }),
 };
+
+export const evidenceAPI = {
+  getAttemptEvidences: (attemptId: string) =>
+    api.get(`/v1/evidence/attempt/${attemptId}`),
+};
