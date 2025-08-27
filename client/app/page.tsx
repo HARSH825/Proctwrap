@@ -1,130 +1,121 @@
 import Link from 'next/link';
-import { Shield, Users, Clock, CheckCircle } from 'lucide-react';
+import { Shield, Users, Clock, CheckCircle, Zap, Eye, Lock, ArrowRight } from 'lucide-react';
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen hero-section">
       {/* Navigation */}
-      <nav className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            <div className="flex items-center">
-              <Shield className="h-8 w-8 text-primary-600" />
-              <span className="ml-2 text-xl font-bold">SecureWrap</span>
-            </div>
-            <div className="flex items-center space-x-4">
-              <Link href="/login" className="text-gray-600 hover:text-gray-900">
-                Login
-              </Link>
-              <Link href="/register" className="btn btn-primary">
-                Get Started
-              </Link>
+      <nav className="relative z-10">
+        <div className="glassmorphism mx-4 mt-4">
+          <div className="max-w-7xl mx-auto px-6 py-4">
+            <div className="flex justify-between items-center">
+              <div className="flex items-center space-x-3">
+                <div className="p-2 bg-gradient-to-r from-primary-600 to-accent rounded-lg">
+                  <Shield className="h-6 w-6 text-white" />
+                </div>
+                <div>
+                  <h1 className="text-xl font-bold text-white">SecureWrap</h1>
+                  <p className="text-text-muted text-xs">Anti-Cheating Platform</p>
+                </div>
+              </div>
+              <div className="flex items-center space-x-4">
+                <Link href="/login" className="text-text-secondary hover:text-accent transition-colors font-medium">
+                  Login
+                </Link>
+                <Link href="/register" className="btn btn-primary">
+                  Get Started
+                </Link>
+              </div>
             </div>
           </div>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary-600 to-primary-700 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative z-10 pt-20 pb-32">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Universal Anti-Cheating
+            <h1 className="text-6xl md:text-7xl font-bold text-white mb-8 leading-tight">
+              Make your
               <br />
-              <span className="text-primary-200">Wrapper for Online Forms</span>
+              <span className="text-gradient">forms secure</span>
             </h1>
-            <p className="text-xl mb-8 max-w-3xl mx-auto">
-              Turn any Google Forms or Microsoft Forms into a secure, monitored exam environment. 
-              No software installation required. Get protected links in 30 seconds.
+            <p className="text-xl md:text-2xl text-text-secondary mb-12 max-w-4xl mx-auto leading-relaxed">
+              SecureWrap is a fully managed anti-cheating wrapper and monitoring 
+              system for your existing Google Forms, enabling comprehensive violation detection 
+              and flexible security policies directly from your dashboard.
             </p>
-            <Link href="/register" className="bg-white text-primary-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-              Start Free Trial
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Link href="/register" className="btn btn-primary text-lg px-8 py-4 group">
+                Try SecureWrap now
+                <ArrowRight className="ml-2 h-5 w-5 transform group-hover:translate-x-1 transition-transform" />
+              </Link>
+              <Link href="/demo" className="btn btn-outline text-lg px-8 py-4">
+                Test SecureWrap's protection
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Features */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">Why Choose SecureWrap?</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              The easiest way to add comprehensive anti-cheating protection to your existing forms
-            </p>
-          </div>
-          
+      {/* Features Grid */}
+      <section className="relative z-10 py-20">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="text-center">
-              <Shield className="h-12 w-12 text-primary-600 mx-auto mb-4" />
-              <h3 className="text-lg font-semibold mb-2">Universal Protection</h3>
-              <p className="text-gray-600">Works with Google Forms, Microsoft Forms, and any web-based form</p>
-            </div>
-            
-            <div className="text-center">
-              <Clock className="h-12 w-12 text-primary-600 mx-auto mb-4" />
-              <h3 className="text-lg font-semibold mb-2">30-Second Setup</h3>
-              <p className="text-gray-600">Paste your form URL, get a protected link instantly</p>
-            </div>
-            
-            <div className="text-center">
-              <Users className="h-12 w-12 text-primary-600 mx-auto mb-4" />
-              <h3 className="text-lg font-semibold mb-2">No Installation</h3>
-              <p className="text-gray-600">Students take tests in their browser - no downloads required</p>
-            </div>
-            
-            <div className="text-center">
-              <CheckCircle className="h-12 w-12 text-primary-600 mx-auto mb-4" />
-              <h3 className="text-lg font-semibold mb-2">Real-time Monitoring</h3>
-              <p className="text-gray-600">Advanced violation detection with detailed reporting</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* How It Works */}
-      <section className="bg-gray-50 py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">How It Works</h2>
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="card text-center">
-              <div className="bg-primary-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-primary-600 font-bold">1</span>
+            <div className="stats-card text-center floating-card">
+              <div className="w-16 h-16 bg-accent rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <Shield className="h-8 w-8 text-background" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Paste Your Form URL</h3>
-              <p className="text-gray-600">Copy any Google Forms or Microsoft Forms link</p>
+              <h3 className="text-xl font-bold text-white mb-4">Universal Protection</h3>
+              <p className="text-text-secondary">Works with Google Forms, Microsoft Forms, and any web-based assessment platform</p>
             </div>
             
-            <div className="card text-center">
-              <div className="bg-primary-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-primary-600 font-bold">2</span>
+            <div className="stats-card text-center floating-card">
+              <div className="w-16 h-16 bg-accent rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <Zap className="h-8 w-8 text-background" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Get Protected Link</h3>
-              <p className="text-gray-600">Receive a secure SecureWrap link instantly</p>
+              <h3 className="text-xl font-bold text-white mb-4">Instant Setup</h3>
+              <p className="text-text-secondary">Paste your form URL and get a secure, protected link in just 30 seconds</p>
             </div>
             
-            <div className="card text-center">
-              <div className="bg-primary-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-primary-600 font-bold">3</span>
+            <div className="stats-card text-center floating-card">
+              <div className="w-16 h-16 bg-accent rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <Users className="h-8 w-8 text-background" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Monitor & Report</h3>
-              <p className="text-gray-600">Watch real-time violations and get detailed reports</p>
+              <h3 className="text-xl font-bold text-white mb-4">Zero Installation</h3>
+              <p className="text-text-secondary">Students take tests in their browser with no downloads or software required</p>
+            </div>
+            
+            <div className="stats-card text-center floating-card">
+              <div className="w-16 h-16 bg-accent rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <Eye className="h-8 w-8 text-background" />
+              </div>
+              <h3 className="text-xl font-bold text-white mb-4">Real-time Monitoring</h3>
+              <p className="text-text-secondary">Advanced AI-powered violation detection with detailed analytics and reporting</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="flex items-center justify-center mb-4">
-            <Shield className="h-6 w-6 text-primary-400" />
-            <span className="ml-2 text-lg font-bold">SecureWrap</span>
+      <footer className="relative z-10 py-12">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="glassmorphism p-8">
+            <div className="flex flex-col md:flex-row items-center justify-between">
+              <div className="flex items-center space-x-3 mb-4 md:mb-0">
+                <div className="p-2 bg-accent rounded-lg">
+                  <Shield className="h-6 w-6 text-background" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-white">SecureWrap</h3>
+                  <p className="text-text-muted text-sm">Securing online assessments worldwide</p>
+                </div>
+              </div>
+              <p className="text-text-muted text-center md:text-right">
+                © 2025 SecureWrap. All rights reserved.
+              </p>
+            </div>
           </div>
-          <p className="text-gray-400">© 2025 SecureWrap. All rights reserved.</p>
         </div>
       </footer>
     </div>

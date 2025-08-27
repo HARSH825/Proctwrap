@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { useParams, useRouter } from 'next/navigation';
-import { Shield, User, Mail } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { useParams, useSearchParams, useRouter } from 'next/navigation';
+import { Shield, User, Mail, CheckCircle, AlertTriangle, ArrowLeft } from 'lucide-react';
 import { testAPI, studentAPI, attemptAPI } from '../../../lib/api';
 
 export default function StudentEntryPage() {
@@ -11,8 +11,12 @@ export default function StudentEntryPage() {
   const [test, setTest] = useState<any>(null);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [uid, setUid] = useState('');
   const [loading, setLoading] = useState(true);
   const [starting, setStarting] = useState(false);
+  const [agreedToTerms, setAgreedToTerms] = useState(false);
+  const [currentStep, setCurrentStep] = useState(1);
+  const [isTestStarted, setIsTestStarted] = useState(false);
 
   useEffect(() => {
     loadTest();
@@ -35,17 +39,19 @@ export default function StudentEntryPage() {
     setStarting(true);
 
     try {
-      // Create/get student
-      const uid = `${email}_${Date.now()}`;
       const studentResponse = await studentAPI.create(name, email, uid);
       const student = studentResponse.data;
 
-      // Start attempt
       const attemptResponse = await attemptAPI.start(student.id, test.id);
       const attempt = attemptResponse.data;
 
-      // Redirect to secure test environment
-      router.push(`/test/${params.slug}?attemptId=${attempt.id}&studentId=${student.id}`);
+      // Start the secure test environment
+      setIsTestStarted(true);
+      
+      // Initialize security measures and redirect to secure test page
+      setTimeout(() => {
+        window.location.href = `/test/${params.slug}?attemptId=${attempt.id}&studentId=${student.id}`;
+      }, 1000);
     } catch (error) {
       console.error('Failed to start test:', error);
       alert('Failed to start test');
@@ -56,114 +62,341 @@ export default function StudentEntryPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
+      <div className="min-h-screen hero-section flex items-center justify-center">
+        <div className="card text-center max-w-md mx-auto">
+          <div className="loading-spinner h-16 w-16 mx-auto mb-4"></div>
+          <p style={{ color: 'var(--color-text)' }} className="text-lg font-medium">
+            Loading secure test environment...
+          </p>
+        </div>
       </div>
     );
   }
 
   if (!test) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900">Test Not Found</h1>
-          <p className="text-gray-600 mt-2">The test you're looking for doesn't exist.</p>
+      <div className="min-h-screen hero-section flex items-center justify-center">
+        <div className="card text-center max-w-md mx-auto">
+          <AlertTriangle className="h-16 w-16 mx-auto mb-4" style={{ color: 'var(--color-warning)' }} />
+          <h1 className="text-2xl font-bold mb-2" style={{ color: 'var(--color-text)' }}>Test Not Found</h1>
+          <p className="mb-6" style={{ color: 'var(--color-text-secondary)' }}>
+            The test you're looking for doesn't exist or has been removed.
+          </p>
+          <button
+            onClick={() => router.push('/')}
+            className="btn btn-primary"
+          >
+            <ArrowLeft className="h-5 w-5 mr-2" />
+            Back to Home
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  if (isTestStarted) {
+    return (
+      <div className="min-h-screen hero-section flex items-center justify-center">
+        <div className="card text-center max-w-md mx-auto">
+          <div className="w-16 h-16 bg-gradient-to-r from-primary to-primary-light rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <Shield className="h-10 w-10" style={{ color: 'var(--color-background)' }} />
+          </div>
+          <h2 className="text-2xl font-bold mb-4" style={{ color: 'var(--color-text)' }}>
+            Initializing Secure Environment
+          </h2>
+          <p className="mb-6" style={{ color: 'var(--color-text-secondary)' }}>
+            Preparing your monitored test session...
+          </p>
+          <div className="loading-spinner h-8 w-8 mx-auto"></div>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen hero-section">
       {/* Header */}
-      <div className="bg-primary-600 text-white py-4">
-        <div className="max-w-4xl mx-auto px-4 flex items-center">
-          <Shield className="h-6 w-6 mr-2" />
-          <span className="font-semibold">SecureWrap Protected Test</span>
+      <div className="relative z-10">
+        <div className="glassmorphism mx-4 mt-4 p-4">
+          <div className="max-w-7xl mx-auto flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              <div className="p-2 bg-gradient-to-r from-primary to-primary-light rounded-lg">
+                <Shield className="h-6 w-6" style={{ color: 'var(--color-background)' }} />
+              </div>
+              <div>
+                <h1 className="text-xl font-bold" style={{ color: 'var(--color-text)' }}>SecureWrap</h1>
+                <p className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>Anti-Cheating Platform</p>
+              </div>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Shield className="h-5 w-5" style={{ color: 'var(--color-primary)' }} />
+              <span className="text-sm font-medium" style={{ color: 'var(--color-text)' }}>Secure Test Environment</span>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div className="max-w-2xl mx-auto p-6">
-        <div className="card">
-          <div className="text-center mb-6">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">{test.title}</h1>
-            <p className="text-gray-600">
-              This is a monitored test environment. Please read the instructions carefully.
-            </p>
-          </div>
-
-          {/* Instructions */}
-          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6">
-            <h2 className="font-semibold text-yellow-800 mb-2">⚠️ Important Instructions</h2>
-            <ul className="text-sm text-yellow-700 space-y-1">
-              <li>• This test will run in fullscreen mode</li>
-              <li>• Do not switch tabs or exit fullscreen - violations will be recorded</li>
-              <li>• Ensure you have a stable internet connection</li>
-              <li>• Do not use any external help or resources</li>
-              <li>• Your activity will be monitored throughout the test</li>
-            </ul>
-          </div>
-
-          {/* Student Info Form */}
-          <form onSubmit={handleStart} className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Full Name
-              </label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center">
-                  <User className="h-5 w-5 text-gray-400" />
-                </div>
-                <input
-                  type="text"
-                  required
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className="form-input pl-10"
-                  placeholder="Enter your full name"
-                />
+      {/* Main Content */}
+      <div className="relative z-10 max-w-4xl mx-auto px-4 py-12">
+        <div className="text-center mb-12">
+          <h2 className="text-5xl font-bold mb-4" style={{ color: 'var(--color-text)' }}>
+            {test.title}
+          </h2>
+          <p className="text-xl mb-8" style={{ color: 'var(--color-text-secondary)' }}>
+            Advanced monitoring and anti-cheating protection enabled
+          </p>
+          
+          {/* Progress Steps */}
+          <div className="flex justify-center items-center space-x-4 mb-8">
+            <div className={`flex items-center space-x-2 ${currentStep >= 1 ? 'text-blue-400' : 'text-gray-400'}`}>
+              <div className={`w-8 h-8 rounded-full flex items-center justify-center ${currentStep >= 1 ? 'bg-blue-500' : 'bg-gray-500'}`}>
+                <span className="text-white font-bold text-sm">1</span>
               </div>
+              <span className="font-medium">Guidelines</span>
+            </div>
+            <div className="w-12 h-0.5 bg-gray-400"></div>
+            <div className={`flex items-center space-x-2 ${currentStep >= 2 ? 'text-blue-400' : 'text-gray-400'}`}>
+              <div className={`w-8 h-8 rounded-full flex items-center justify-center ${currentStep >= 2 ? 'bg-blue-500' : 'bg-gray-500'}`}>
+                <span className="text-white font-bold text-sm">2</span>
+              </div>
+              <span className="font-medium">Information</span>
+            </div>
+            <div className="w-12 h-0.5 bg-gray-400"></div>
+            <div className={`flex items-center space-x-2 ${currentStep >= 3 ? 'text-blue-400' : 'text-gray-400'}`}>
+              <div className={`w-8 h-8 rounded-full flex items-center justify-center ${currentStep >= 3 ? 'bg-blue-500' : 'bg-gray-500'}`}>
+                <span className="text-white font-bold text-sm">3</span>
+              </div>
+              <span className="font-medium">Start Test</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Step 1: Guidelines */}
+        {currentStep === 1 && (
+          <div className="card max-w-3xl mx-auto">
+            <div className="text-center mb-8">
+              <AlertTriangle className="h-16 w-16 mx-auto mb-4" style={{ color: 'var(--color-warning)' }} />
+              <h3 className="text-3xl font-bold mb-4" style={{ color: 'var(--color-text)' }}>
+                Test Guidelines & Rules
+              </h3>
+              <p style={{ color: 'var(--color-text-secondary)' }}>
+                Please read these guidelines carefully before proceeding
+              </p>
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Email Address
-              </label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center">
-                  <Mail className="h-5 w-5 text-gray-400" />
+            <div className="grid md:grid-cols-2 gap-6 mb-8">
+              <div className="p-6 rounded-xl" style={{ backgroundColor: 'rgba(255, 255, 255, 0.05)' }}>
+                <div className="flex items-center space-x-3 mb-4">
+                  <Shield className="h-8 w-8" style={{ color: 'var(--color-primary)' }} />
+                  <h4 className="text-xl font-semibold" style={{ color: 'var(--color-text)' }}>
+                    Monitoring Active
+                  </h4>
                 </div>
-                <input
-                  type="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="form-input pl-10"
-                  placeholder="Enter your email address"
-                />
+                <ul className="space-y-2" style={{ color: 'var(--color-text-secondary)' }}>
+                  <li className="flex items-start space-x-2">
+                    <span style={{ color: 'var(--color-primary)' }} className="mt-1">•</span>
+                    <span>Your screen activity will be monitored</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <span style={{ color: 'var(--color-primary)' }} className="mt-1">•</span>
+                    <span>Tab switching will be detected and recorded</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <span style={{ color: 'var(--color-primary)' }} className="mt-1">•</span>
+                    <span>Fullscreen exits will trigger violations</span>
+                  </li>
+                </ul>
               </div>
-            </div>
 
-            <div className="flex items-center">
-              <input
-                type="checkbox"
-                required
-                className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
-              />
-              <label className="ml-2 text-sm text-gray-700">
-                I understand and agree to the monitoring conditions
-              </label>
+              <div className="p-6 rounded-xl" style={{ backgroundColor: 'rgba(255, 255, 255, 0.05)' }}>
+                <div className="flex items-center space-x-3 mb-4">
+                  <AlertTriangle className="h-8 w-8" style={{ color: 'var(--color-danger)' }} />
+                  <h4 className="text-xl font-semibold" style={{ color: 'var(--color-text)' }}>
+                    Prohibited Actions
+                  </h4>
+                </div>
+                <ul className="space-y-2" style={{ color: 'var(--color-text-secondary)' }}>
+                  <li className="flex items-start space-x-2">
+                    <span style={{ color: 'var(--color-danger)' }} className="mt-1">•</span>
+                    <span>Opening other applications or websites</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <span style={{ color: 'var(--color-danger)' }} className="mt-1">•</span>
+                    <span>Using external help or resources</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <span style={{ color: 'var(--color-danger)' }} className="mt-1">•</span>
+                    <span>Copy/paste operations are disabled</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="p-6 rounded-xl" style={{ backgroundColor: 'rgba(255, 255, 255, 0.05)' }}>
+                <div className="flex items-center space-x-3 mb-4">
+                  <CheckCircle className="h-8 w-8" style={{ color: 'var(--color-success)' }} />
+                  <h4 className="text-xl font-semibold" style={{ color: 'var(--color-text)' }}>
+                    Technical Requirements
+                  </h4>
+                </div>
+                <ul className="space-y-2" style={{ color: 'var(--color-text-secondary)' }}>
+                  <li className="flex items-start space-x-2">
+                    <span style={{ color: 'var(--color-success)' }} className="mt-1">•</span>
+                    <span>Stable internet connection required</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <span style={{ color: 'var(--color-success)' }} className="mt-1">•</span>
+                    <span>Test runs in fullscreen mode</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <span style={{ color: 'var(--color-success)' }} className="mt-1">•</span>
+                    <span>Modern browser with JavaScript enabled</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="p-6 rounded-xl" style={{ backgroundColor: 'rgba(255, 255, 255, 0.05)' }}>
+                <div className="flex items-center space-x-3 mb-4">
+                  <CheckCircle className="h-8 w-8" style={{ color: 'var(--color-primary-light)' }} />
+                  <h4 className="text-xl font-semibold" style={{ color: 'var(--color-text)' }}>
+                    Important Notes
+                  </h4>
+                </div>
+                <ul className="space-y-2" style={{ color: 'var(--color-text-secondary)' }}>
+                  <li className="flex items-start space-x-2">
+                    <span style={{ color: 'var(--color-primary-light)' }} className="mt-1">•</span>
+                    <span>Click "Finish Test" when complete</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <span style={{ color: 'var(--color-primary-light)' }} className="mt-1">•</span>
+                    <span>Excessive violations may result in auto-submission</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <span style={{ color: 'var(--color-primary-light)' }} className="mt-1">•</span>
+                    <span>Return to original screen if tab switched</span>
+                  </li>
+                </ul>
+              </div>
             </div>
 
             <button
-              type="submit"
-              disabled={starting}
-              className="btn btn-primary w-full"
+              onClick={() => setCurrentStep(2)}
+              className="btn btn-primary w-full text-lg py-4"
             >
-              {starting ? 'Starting Test...' : 'Start Secure Test'}
+              I Understand - Continue to Registration
             </button>
-          </form>
-        </div>
+          </div>
+        )}
+
+        {/* Step 2: Student Information */}
+        {currentStep === 2 && (
+          <div className="card max-w-2xl mx-auto">
+            <div className="text-center mb-8">
+              <User className="h-16 w-16 mx-auto mb-4" style={{ color: 'var(--color-primary)' }} />
+              <h3 className="text-3xl font-bold mb-4" style={{ color: 'var(--color-text)' }}>
+                Student Information
+              </h3>
+              <p style={{ color: 'var(--color-text-secondary)' }}>
+                Please provide your details to begin the test
+              </p>
+            </div>
+
+            <form onSubmit={handleStart} className="space-y-6">
+              <div className="space-y-6">
+                <div>
+                  <label className="block text-sm font-medium mb-2" style={{ color: 'var(--color-text)' }}>
+                    Full Name *
+                  </label>
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center">
+                      <User className="h-5 w-5" style={{ color: 'var(--color-text-muted)' }} />
+                    </div>
+                    <input
+                      type="text"
+                      required
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      className="form-input pl-10"
+                      placeholder="Enter your full name"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium mb-2" style={{ color: 'var(--color-text)' }}>
+                    Email Address *
+                  </label>
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center">
+                      <Mail className="h-5 w-5" style={{ color: 'var(--color-text-muted)' }} />
+                    </div>
+                    <input
+                      type="email"
+                      required
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="form-input pl-10"
+                      placeholder="Enter your email address"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium mb-2" style={{ color: 'var(--color-text)' }}>
+                    Student ID / UID *
+                  </label>
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center">
+                      <CheckCircle className="h-5 w-5" style={{ color: 'var(--color-text-muted)' }} />
+                    </div>
+                    <input
+                      type="text"
+                      required
+                      value={uid}
+                      onChange={(e) => setUid(e.target.value)}
+                      className="form-input pl-10"
+                      placeholder="Enter your student ID or UID"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-4 rounded-xl" style={{ backgroundColor: 'rgba(255, 255, 255, 0.05)' }}>
+                <div className="flex items-start space-x-3">
+                  <input
+                    type="checkbox"
+                    required
+                    checked={agreedToTerms}
+                    onChange={(e) => setAgreedToTerms(e.target.checked)}
+                    className="mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                  />
+                  <div className="text-sm">
+                    <p style={{ color: 'var(--color-text-secondary)' }}>
+                      I acknowledge that I have read and understood the test guidelines. 
+                      I agree to comply with all monitoring and anti-cheating measures during this examination.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex space-x-4">
+                <button
+                  type="button"
+                  onClick={() => setCurrentStep(1)}
+                  className="btn btn-secondary flex-1"
+                >
+                  Back to Guidelines
+                </button>
+                <button
+                  type="submit"
+                  disabled={starting || !agreedToTerms}
+                  className="btn btn-primary flex-1"
+                >
+                  {starting ? 'Preparing Test...' : 'Enter Secure Test'}
+                </button>
+              </div>
+            </form>
+          </div>
+        )}
       </div>
     </div>
   );

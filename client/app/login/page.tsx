@@ -33,85 +33,99 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <div className="max-w-md w-full space-y-8 p-8">
-        <div className="text-center">
-          <div className="flex items-center justify-center mb-4">
-            <Shield className="h-12 w-12 text-primary-600" />
+    <div className="min-h-screen hero-section flex items-center justify-center p-4">
+      <div className="w-full max-w-md">
+        {/* Logo/Brand */}
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center justify-center p-3 bg-gradient-to-r from-primary to-primary-light rounded-2xl mb-4">
+            <Shield className="h-10 w-10 text-background" />
           </div>
-          <h2 className="text-3xl font-bold text-gray-900">Welcome Back</h2>
-          <p className="mt-2 text-gray-600">Sign in to your SecureWrap account</p>
+          <h1 className="text-3xl font-bold text-gradient mb-2">Welcome Back</h1>
+          <p className="text-text-secondary">Sign in to your SecureWrap account</p>
         </div>
 
-        {error && (
-          <div className="bg-danger-50 border border-danger-200 rounded-md p-4">
-            <div className="flex">
-              <AlertCircle className="h-5 w-5 text-danger-400" />
-              <div className="ml-3">
-                <p className="text-sm text-danger-700">{error}</p>
+        {/* Login Form */}
+        <div className="card">
+          {error && (
+            <div className="alert alert-danger mb-6">
+              <div className="flex items-center">
+                <AlertCircle className="h-5 w-5 mr-3" />
+                <p className="text-sm">{error}</p>
               </div>
             </div>
-          </div>
-        )}
+          )}
 
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-          <div className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-text mb-2">
                 Email Address
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center">
-                  <Mail className="h-5 w-5 text-gray-400" />
+                <div className="absolute inset-y-0 left-0 pl-4 flex items-center">
+                  <Mail className="h-5 w-5 text-text-muted" />
                 </div>
                 <input
                   type="email"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="form-input pl-10"
+                  className="form-input pl-12"
                   placeholder="Enter your email"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-text mb-2">
                 Password
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center">
-                  <Lock className="h-5 w-5 text-gray-400" />
+                <div className="absolute inset-y-0 left-0 pl-4 flex items-center">
+                  <Lock className="h-5 w-5 text-text-muted" />
                 </div>
                 <input
                   type="password"
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="form-input pl-10"
+                  className="form-input pl-12"
                   placeholder="Enter your password"
                 />
               </div>
             </div>
-          </div>
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="btn btn-primary w-full"
-          >
-            {loading ? 'Signing In...' : 'Sign In'}
-          </button>
+            <button
+              type="submit"
+              disabled={loading}
+              className="btn btn-primary w-full py-3"
+            >
+              {loading ? (
+                <div className="flex items-center justify-center">
+                  <div className="loading-spinner w-5 h-5 mr-2"></div>
+                  Signing In...
+                </div>
+              ) : (
+                'Sign In'
+              )}
+            </button>
+          </form>
 
-          <div className="text-center">
-            <p className="text-sm text-gray-600">
+          <div className="mt-6 text-center">
+            <p className="text-text-secondary">
               Don't have an account?{' '}
-              <Link href="/register" className="text-primary-600 hover:text-primary-500">
+              <Link href="/register" className="text-primary hover:text-primary-light font-medium">
                 Sign up here
               </Link>
             </p>
           </div>
-        </form>
+        </div>
+
+        {/* Back to Home */}
+        <div className="text-center mt-6">
+          <Link href="/" className="text-text-muted hover:text-primary text-sm">
+            ← Back to Home
+          </Link>
+        </div>
       </div>
     </div>
   );
