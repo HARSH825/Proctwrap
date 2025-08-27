@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import DashboardLayout from '../../components/dashboard/DashboardLayout';
-import { Plus, ExternalLink, Users, AlertTriangle, FileText, TrendingUp } from 'lucide-react';
+import { Plus, ExternalLink, Users, AlertTriangle, FileText, TrendingUp, CheckCircle } from 'lucide-react';
 import { testAPI } from '../../lib/api';
 import { auth } from '../../lib/auth';
 import { Test } from '../../types';
@@ -124,55 +124,56 @@ export default function DashboardPage() {
     <DashboardLayout title="Dashboard">
       <div className="space-y-8">
         {/* Stats Overview */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <div className="stats-card">
-            <div className="flex items-center">
-              <div className="p-3 bg-blue-100 rounded-xl">
-                <FileText className="h-8 w-8 text-blue-600" />
-              </div>
-              <div className="ml-4">
-                <p className="text-3xl font-bold" style={{ color: 'var(--color-text)' }}>{tests.length}</p>
-                <p className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>Total Tests</p>
-              </div>
-            </div>
-          </div>
-          
-          <div className="stats-card">
-            <div className="flex items-center">
-              <div className="p-3 bg-green-100 rounded-xl">
-                <Users className="h-8 w-8 text-green-600" />
-              </div>
-              <div className="ml-4">
-                <p className="text-3xl font-bold" style={{ color: 'var(--color-text)' }}>{totalAttempts}</p>
-                <p className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>Total Attempts</p>
-              </div>
-            </div>
-          </div>
-          
-          <div className="stats-card">
-            <div className="flex items-center">
-              <div className="p-3 bg-yellow-100 rounded-xl">
-                <AlertTriangle className="h-8 w-8 text-yellow-600" />
-              </div>
-              <div className="ml-4">
-                <p className="text-3xl font-bold" style={{ color: 'var(--color-text)' }}>{totalViolations}</p>
-                <p className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>Total Violations</p>
-              </div>
-            </div>
-          </div>
-          
-          <div className="stats-card">
-            <div className="flex items-center">
-              <div className="p-3 bg-purple-100 rounded-xl">
-                <TrendingUp className="h-8 w-8 text-purple-600" />
-              </div>
-              <div className="ml-4">
-                <p className="text-3xl font-bold" style={{ color: 'var(--color-text)' }}>{completedAttempts}</p>
-                <p className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>Completed</p>
-              </div>
-            </div>
-          </div>
-        </div>
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+  <div className="stats-card">
+    <div className="flex items-center justify-between">
+      <div>
+        <p className="text-sm font-medium text-text-muted uppercase tracking-wide">Total Tests</p>
+        <p className="text-2xl font-bold text-text mt-1">{tests.length}</p>
+      </div>
+      <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+        <FileText className="h-5 w-5 text-primary" />
+      </div>
+    </div>
+  </div>
+  
+  <div className="stats-card">
+    <div className="flex items-center justify-between">
+      <div>
+        <p className="text-sm font-medium text-text-muted uppercase tracking-wide">Total Attempts</p>
+        <p className="text-2xl font-bold text-text mt-1">{totalAttempts}</p>
+      </div>
+      <div className="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center">
+        <Users className="h-5 w-5 text-accent" />
+      </div>
+    </div>
+  </div>
+  
+  <div className="stats-card">
+    <div className="flex items-center justify-between">
+      <div>
+        <p className="text-sm font-medium text-text-muted uppercase tracking-wide">Total Violations</p>
+        <p className="text-2xl font-bold text-danger mt-1">{totalViolations}</p>
+      </div>
+      <div className="w-10 h-10 bg-danger/10 rounded-lg flex items-center justify-center">
+        <AlertTriangle className="h-5 w-5 text-danger" />
+      </div>
+    </div>
+  </div>
+  
+  <div className="stats-card">
+    <div className="flex items-center justify-between">
+      <div>
+        <p className="text-sm font-medium text-text-muted uppercase tracking-wide">Completed</p>
+        <p className="text-2xl font-bold text-success mt-1">{completedAttempts}</p>
+      </div>
+      <div className="w-10 h-10 bg-success/10 rounded-lg flex items-center justify-center">
+        <CheckCircle className="h-5 w-5 text-success" />
+      </div>
+    </div>
+  </div>
+</div>
+
 
         {/* Create Test Section */}
         <div className="card">
