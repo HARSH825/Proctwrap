@@ -4,7 +4,7 @@ import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'SecureWrap - Anti-Cheating Platform',
+  title: 'Proctorap - Anti-Cheating Platform',
   description: 'Universal anti-cheating wrapper for online forms',
 }
 

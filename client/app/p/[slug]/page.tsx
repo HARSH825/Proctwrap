@@ -124,7 +124,7 @@ export default function StudentEntryPage() {
                 <Shield className="h-6 w-6" style={{ color: 'var(--color-background)' }} />
               </div>
               <div>
-                <h1 className="text-xl font-bold" style={{ color: 'var(--color-text)' }}>SecureWrap</h1>
+                <h1 className="text-xl font-bold" style={{ color: 'var(--color-text)' }}>Proctorap</h1>
                 <p className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>Anti-Cheating Platform</p>
               </div>
             </div>

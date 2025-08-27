@@ -41,7 +41,7 @@ export default function LoginPage() {
             <Shield className="h-10 w-10 text-background" />
           </div>
           <h1 className="text-3xl font-bold text-gradient mb-2">Welcome Back</h1>
-          <p className="text-text-secondary">Sign in to your SecureWrap account</p>
+          <p className="text-text-secondary">Sign in to your Proctorap account</p>
         </div>
 
         {/* Login Form */}

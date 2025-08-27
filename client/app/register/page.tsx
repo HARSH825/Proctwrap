@@ -54,7 +54,7 @@ export default function RegisterPage() {
           </div>
           <h2 className="text-2xl font-bold text-text mb-4">Account Created!</h2>
           <p className="text-text-secondary mb-4">
-            Welcome to SecureWrap! Redirecting you to login...
+            Welcome to Proctorap! Redirecting you to login...
           </p>
           <div className="loading-spinner w-8 h-8 mx-auto"></div>
         </div>
@@ -71,7 +71,7 @@ export default function RegisterPage() {
             <Shield className="h-10 w-10 text-background" />
           </div>
           <h1 className="text-3xl font-bold text-gradient mb-2">Create Account</h1>
-          <p className="text-text-secondary">Join SecureWrap and start protecting your forms</p>
+          <p className="text-text-secondary">Join Proctorap and start protecting your forms</p>
         </div>
 
         {/* Register Form */}

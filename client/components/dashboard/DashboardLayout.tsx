@@ -58,7 +58,7 @@ export default function DashboardLayout({ children, title }: DashboardLayoutProp
               <Shield className="h-6 w-6 text-background" />
             </div>
             <div>
-              <h1 className="text-lg font-bold text-text">SecureWrap</h1>
+              <h1 className="text-lg font-bold text-text">Proctorap</h1>
               <p className="text-xs text-text-muted">Dashboard</p>
             </div>
           </div>

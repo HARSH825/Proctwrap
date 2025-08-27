@@ -9,7 +9,7 @@ export default function HomePage() {
       name: "Dr. Sarah Chen",
       role: "Computer Science Professor",
       university: "Stanford University",
-      quote: "SecureWrap has revolutionized our online assessments. The AI detection is incredibly accurate and saves us hours of manual monitoring.",
+      quote: "Proctorap has revolutionized our online assessments. The AI detection is incredibly accurate and saves us hours of manual monitoring.",
       avatar: "SC"
     },
     {
@@ -23,7 +23,7 @@ export default function HomePage() {
       name: "Prof. Emily Watson",
       role: "Department Head",
       university: "Harvard Medical School",
-      quote: "We've seen a 85% reduction in academic dishonesty since implementing SecureWrap. It's a game-changer.",
+      quote: "We've seen a 85% reduction in academic dishonesty since implementing Proctorap. It's a game-changer.",
       avatar: "EW"
     },
     {
@@ -58,7 +58,7 @@ export default function HomePage() {
           <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
             <Shield className="h-8 w-8 text-primary" />
           </div>
-          <h3 className="text-xl font-semibold text-text mb-2">Google Forms + SecureWrap</h3>
+          <h3 className="text-xl font-semibold text-text mb-2">Google Forms + Proctorap</h3>
           <p className="text-text-secondary">Your existing form, now with enterprise-grade security.</p>
         </div>
         <div className="bg-background/50 rounded-lg p-6 mb-6">
@@ -87,7 +87,7 @@ export default function HomePage() {
           <div className="w-16 h-16 bg-blue-600/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
             <Shield className="h-8 w-8 text-blue-500" />
           </div>
-          <h3 className="text-xl font-semibold text-text mb-2">Microsoft Forms + SecureWrap</h3>
+          <h3 className="text-xl font-semibold text-text mb-2">Microsoft Forms + Proctorap</h3>
           <p className="text-text-secondary">Advanced proctoring for Microsoft Forms, activated in seconds.</p>
         </div>
         <div className="bg-background/50 rounded-lg p-6 mb-6">
@@ -116,7 +116,7 @@ export default function HomePage() {
           <div className="w-16 h-16 bg-orange-500/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
             <Shield className="h-8 w-8 text-orange-500" />
           </div>
-          <h3 className="text-xl font-semibold text-text mb-2">Custom Forms + SecureWrap</h3>
+          <h3 className="text-xl font-semibold text-text mb-2">Custom Forms + Proctorap</h3>
           <p className="text-text-secondary">Secure Typeform, SurveyMonkey, or any online assessment instantly.</p>
         </div>
         <div className="bg-background/50 rounded-lg p-6 mb-6">
@@ -175,7 +175,7 @@ export default function HomePage() {
             <Shield className="h-8 w-8 text-primary" />
           </div>
           <h3 className="text-xl font-semibold text-text mb-2">Any Assessment Platform</h3>
-          <p className="text-text-secondary">If it's web-based, SecureWrap can protect it.</p>
+          <p className="text-text-secondary">If it's web-based, Proctorap can protect it.</p>
         </div>
         <div className="bg-background/50 rounded-lg p-6 mb-6">
           <div className="text-sm text-text-muted mb-2">Setup Process:</div>
@@ -240,7 +240,7 @@ export default function HomePage() {
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-2">
               <Shield className="h-8 w-8 text-primary" />
-              <span className="text-xl font-bold text-gradient">SecureWrap</span>
+              <span className="text-xl font-bold text-gradient">Proctorap</span>
             </div>
             <div className="hidden md:flex items-center space-x-8">
               <a href="#features" className="text-text-secondary hover:text-primary transition-colors text-sm font-medium">Features</a>
@@ -311,7 +311,7 @@ export default function HomePage() {
               Works With Any Assessment Platform
             </h2>
             <p className="text-text-secondary max-w-2xl mx-auto">
-              SecureWrap seamlessly integrates with your existing tools - no migration needed
+              Proctorap seamlessly integrates with your existing tools - no migration needed
             </p>
           </div>
           <div className="max-w-4xl mx-auto">
@@ -412,16 +412,16 @@ export default function HomePage() {
         Our Users <span className="relative text-danger">
           <s>Love</s><span className="ml-1">Hate</span></span> Us!
       </h2>
-      <p className="text-text-secondary max-w-xl mx-auto">Real quotes from frustrated cheaters — SecureWrap stops them in their tracks.</p>
+      <p className="text-text-secondary max-w-xl mx-auto">Real quotes from frustrated cheaters — Proctorap stops them in their tracks.</p>
     </div>
     <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 mb-20">
       <div className="stats-card text-center p-6">
         <div className="text-3xl mb-4">😡</div>
-        <p className="text-text-secondary text-base mb-0">"Who created SecureWrap? I just want to 'talk'..."</p>
+        <p className="text-text-secondary text-base mb-0">"Who created Proctorap? I just want to 'talk'..."</p>
       </div>
       <div className="stats-card text-center p-6">
         <div className="text-3xl mb-4">🤬</div>
-        <p className="text-text-secondary text-base mb-0">"SecureWrap is the work of the devil—caught me tab switching twice!"</p>
+        <p className="text-text-secondary text-base mb-0">"Proctorap is the work of the devil—caught me tab switching twice!"</p>
       </div>
       <div className="stats-card text-center p-6">
         <div className="text-3xl mb-4">😈</div>
@@ -447,7 +447,7 @@ export default function HomePage() {
     {/* Educator Testimonials */}
     <div className="text-center mb-16">
       <h2 className="text-3xl font-bold text-text mb-4">
-        Educators Love SecureWrap
+        Educators Love Proctorap
       </h2>
       <p className="text-text-secondary max-w-2xl mx-auto">
         Join thousands of satisfied educators who've transformed their online assessments
@@ -459,7 +459,7 @@ export default function HomePage() {
           name: "Dr. Sarah Chen",
           role: "Computer Science Professor",
           university: "Stanford University",
-          quote: "SecureWrap has revolutionized our online assessments. The AI detection is incredibly accurate and saves us hours of manual monitoring.",
+          quote: "Proctorap has revolutionized our online assessments. The AI detection is incredibly accurate and saves us hours of manual monitoring.",
           avatar: "SC"
         },
         {
@@ -473,7 +473,7 @@ export default function HomePage() {
           name: "Prof. Emily Watson",
           role: "Department Head",
           university: "Harvard Medical School",
-          quote: "We've seen an 85% reduction in academic dishonesty since implementing SecureWrap. It's a game-changer.",
+          quote: "We've seen an 85% reduction in academic dishonesty since implementing Proctorap. It's a game-changer.",
           avatar: "EW"
         },
         {
@@ -568,7 +568,7 @@ export default function HomePage() {
               Ready to Eliminate Cheating?
             </h2>
             <p className="text-text-secondary mb-8 max-w-2xl mx-auto">
-              Join 1,200+ institutions using SecureWrap to maintain academic integrity. Start your free trial today - no credit card required.
+              Join 1,200+ institutions using Proctorap to maintain academic integrity. Start your free trial today - no credit card required.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link href="/register" className="btn btn-primary px-8 py-4">
@@ -592,7 +592,7 @@ export default function HomePage() {
             <div className="col-span-1 md:col-span-2">
               <div className="flex items-center space-x-2 mb-4">
                 <Shield className="h-6 w-6 text-primary" />
-                <span className="text-lg font-bold text-gradient">SecureWrap</span>
+                <span className="text-lg font-bold text-gradient">Proctorap</span>
               </div>
               <p className="text-text-secondary mb-4">
                 The most trusted anti-cheating solution for online assessments. Secure, reliable, and easy to use.
@@ -627,7 +627,7 @@ export default function HomePage() {
           </div>
           <div className="border-t border-surface-light mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
             <div className="text-sm text-text-muted">
-              © 2025 SecureWrap. All rights reserved.
+              © 2025 Proctorap. All rights reserved.
             </div>
             <div className="flex items-center space-x-6 mt-4 md:mt-0">
               <a href="#" className="text-sm text-text-muted hover:text-primary transition-colors">Privacy</a>
