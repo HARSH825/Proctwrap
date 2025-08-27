@@ -40,7 +40,6 @@ api.interceptors.response.use(
 export const authAPI = {
   login: (email: string, password: string) =>
     api.post('/v1/teacher/login', { email, password }),
-  
   register: (name: string, email: string, password: string) =>
     api.post('/v1/teacher/create', { name, email, password }),
 };
@@ -48,13 +47,10 @@ export const authAPI = {
 export const testAPI = {
   create: (title: string, url: string, teacherId: string) =>
     api.post('/v1/test/test', { title, url, teacherId }),
-  
   getBySlug: (slug: string) =>
     api.get(`/v1/test/test/${slug}`),
-  
   getTeacherTests: (teacherId: string) =>
     api.get(`/v1/teacher/list/${teacherId}`),
-  
   getTestAttempts: (testId: string) =>
     api.get(`/v1/teacher/listAttempts/${testId}`),
 };
@@ -62,7 +58,6 @@ export const testAPI = {
 export const studentAPI = {
   create: (name: string, email: string, uid: string) =>
     api.post('/v1/student', { name, email, uid }),
-  
   get: (uid: string) =>
     api.get(`/v1/student/${uid}`),
 };
@@ -70,10 +65,8 @@ export const studentAPI = {
 export const attemptAPI = {
   start: (studentId: string, testId: string) =>
     api.post('/v1/attempt/start', { studentId, testId }),
-  
   finish: (attemptId: string) =>
     api.post('/v1/attempt/finish', { attemptId }),
-  
-  recordViolation: (attemptId: string, type: string) =>
-    api.patch(`/v1/violation/attempts/${attemptId}/violation`, { type }),
+  recordViolation: (attemptId: string, type: string, image?: string | null) =>
+    api.patch(`/v1/violation/attempts/${attemptId}/violation`, { type, image }),
 };
