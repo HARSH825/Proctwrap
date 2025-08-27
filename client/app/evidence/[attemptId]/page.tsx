@@ -11,6 +11,8 @@ export default function EvidenceViewer() {
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState<any>(null);
+  const [imageLoadingStates, setImageLoadingStates] = useState<{[key: string]: boolean}>({});
+  const [imageErrors, setImageErrors] = useState<{[key: string]: boolean}>({});
 
   useEffect(() => {
     loadEvidences();
@@ -20,11 +22,36 @@ export default function EvidenceViewer() {
     try {
       const response = await evidenceAPI.getAttemptEvidences(params.attemptId as string);
       setData(response.data);
+      
+      // Initialize loading states for all images
+      const loadingStates: {[key: string]: boolean} = {};
+      response.data.allEvidences.forEach((evidence: any) => {
+        loadingStates[evidence.id] = true;
+      });
+      setImageLoadingStates(loadingStates);
     } catch (error) {
       console.error('Failed to load evidences:', error);
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleImageLoad = (evidenceId: string) => {
+    setImageLoadingStates(prev => ({
+      ...prev,
+      [evidenceId]: false
+    }));
+  };
+
+  const handleImageError = (evidenceId: string) => {
+    setImageErrors(prev => ({
+      ...prev,
+      [evidenceId]: true
+    }));
+    setImageLoadingStates(prev => ({
+      ...prev,
+      [evidenceId]: false
+    }));
   };
 
   const getViolationIcon = (type: string) => {
@@ -44,6 +71,16 @@ export default function EvidenceViewer() {
       case 'MULTIPLE_FACES': return 'Multiple Faces';
       case 'PHONE_DETECTION': return 'Phone Detection';
       default: return type;
+    }
+  };
+
+  const getViolationColor = (type: string) => {
+    switch (type) {
+      case 'TAB_SWITCH': return '#ef4444';
+      case 'FULLSCREEN_EXIT': return '#f59e0b';
+      case 'MULTIPLE_FACES': return '#3b82f6';
+      case 'PHONE_DETECTION': return '#10b981';
+      default: return '#6b7280';
     }
   };
 
@@ -77,7 +114,7 @@ export default function EvidenceViewer() {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: 'var(--color-background)' }}>
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-8 max-w-7xl">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <button onClick={() => router.back()} className="btn btn-secondary">
@@ -154,31 +191,61 @@ export default function EvidenceViewer() {
           </h3>
           
           {allEvidences.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {allEvidences.map((evidence: any) => (
-                <div key={evidence.id} className="card hover:shadow-lg transition-shadow cursor-pointer" onClick={() => setSelectedImage(evidence)}>
+                <div key={evidence.id} className="card hover:shadow-lg transition-all duration-200 cursor-pointer" onClick={() => setSelectedImage(evidence)}>
                   <div className="relative group">
+                    {/* Loading indicator */}
+                    {imageLoadingStates[evidence.id] && (
+                      <div className="w-full h-48 bg-gray-200 rounded-lg mb-4 flex items-center justify-center">
+                        <div className="loading-spinner h-8 w-8"></div>
+                      </div>
+                    )}
+                    
+                    {/* Error state */}
+                    {imageErrors[evidence.id] && (
+                      <div className="w-full h-48 bg-gray-100 rounded-lg mb-4 flex items-center justify-center border-2 border-dashed border-gray-300">
+                        <div className="text-center">
+                          <AlertTriangle className="h-8 w-8 mx-auto mb-2 text-gray-400" />
+                          <p className="text-sm text-gray-500">Failed to load image</p>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Actual image */}
                     <img
                       src={evidence.url}
                       alt={`${getViolationLabel(evidence.type)} evidence`}
-                      className="w-full h-48 object-cover rounded-lg mb-4"
-                      loading="lazy"
+                      className={`w-full h-48 object-cover rounded-lg mb-4 transition-all duration-200 ${
+                        imageLoadingStates[evidence.id] || imageErrors[evidence.id] ? 'hidden' : 'block'
+                      }`}
+                      onLoad={() => handleImageLoad(evidence.id)}
+                      onError={() => handleImageError(evidence.id)}
+                      style={{ objectFit: 'cover' }}
                     />
-                    <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-200 rounded-lg flex items-center justify-center">
-                      <Eye className="h-8 w-8 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </div>
+                    
+                    {/* Hover overlay - only show when image is loaded */}
+                    {!imageLoadingStates[evidence.id] && !imageErrors[evidence.id] && (
+                      <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-200 rounded-lg flex items-center justify-center mb-4">
+                        <Eye className="h-8 w-8 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </div>
+                    )}
                   </div>
                   
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center space-x-2">
                       {getViolationIcon(evidence.type)}
-                      <span className="font-medium" style={{ color: 'var(--color-text)' }}>
+                      <span className="font-medium text-sm" style={{ color: 'var(--color-text)' }}>
                         {getViolationLabel(evidence.type)}
                       </span>
                     </div>
+                    <div 
+                      className="w-3 h-3 rounded-full" 
+                      style={{ backgroundColor: getViolationColor(evidence.type) }}
+                    ></div>
                   </div>
                   
-                  <p className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>
+                  <p className="text-xs" style={{ color: 'var(--color-text-secondary)' }}>
                     {new Date(evidence.createdAt).toLocaleString()}
                   </p>
                 </div>
@@ -197,7 +264,7 @@ export default function EvidenceViewer() {
       {/* Image Modal */}
       {selectedImage && (
         <div className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-4">
-          <div className="relative max-w-4xl max-h-full">
+          <div className="relative max-w-5xl max-h-full">
             <button
               onClick={() => setSelectedImage(null)}
               className="absolute top-4 right-4 z-10 p-2 rounded-full bg-black bg-opacity-50 text-white hover:bg-opacity-75 transition-colors"

@@ -1,14 +1,15 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
+import { Users, Clock, AlertTriangle, Eye, Calendar, FileText, Image } from 'lucide-react';
 import DashboardLayout from '../../../../components/dashboard/DashboardLayout';
-import { Users, Clock, AlertTriangle, Eye, Calendar, FileText } from 'lucide-react';
 import { testAPI } from '../../../../lib/api';
 import { Attempt } from '../../../../types';
 
 export default function TestDetailsPage() {
   const params = useParams();
+  const router = useRouter();
   const [attempts, setAttempts] = useState<Attempt[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -38,6 +39,10 @@ export default function TestDetailsPage() {
     return { color: 'var(--color-danger)', bg: 'rgba(239, 68, 68, 0.1)' };
   };
 
+  const handleShowEvidence = (attemptId: string) => {
+    router.push(`/evidence/${attemptId}`);
+  };
+
   if (loading) {
     return (
       <DashboardLayout title="Test Details">
@@ -50,7 +55,7 @@ export default function TestDetailsPage() {
 
   return (
     <DashboardLayout title="Test Details">
-      <div className="space-y-6">
+      <div className="space-y-6 max-w-full">
         {/* Summary Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <div className="stats-card">
@@ -112,90 +117,143 @@ export default function TestDetailsPage() {
             </div>
           ) : (
             <div className="overflow-x-auto">
-              <table className="min-w-full divide-y" style={{ borderColor: 'var(--color-surface-light)' }}>
-                <thead style={{ backgroundColor: 'var(--color-surface-light)' }}>
-                  <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider" style={{ color: 'var(--color-text)' }}>
-                      Student
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider" style={{ color: 'var(--color-text)' }}>
-                      Started
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider" style={{ color: 'var(--color-text)' }}>
-                      Status
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider" style={{ color: 'var(--color-text)' }}>
-                      Tab Switch
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider" style={{ color: 'var(--color-text)' }}>
-                      Fullscreen Exit
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider" style={{ color: 'var(--color-text)' }}>
-                      Multiple Faces
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider" style={{ color: 'var(--color-text)' }}>
-                      Phone Detection
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider" style={{ color: 'var(--color-text)' }}>
-                      Total
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y" style={{ backgroundColor: 'var(--color-surface)', borderColor: 'var(--color-surface-light)' }}>
-                  {attempts.map((attempt) => (
-                    <tr key={attempt.id} className="hover:bg-opacity-50" style={{ backgroundColor: 'transparent' }}>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div>
-                          <p className="font-medium" style={{ color: 'var(--color-text)' }}>{attempt.student.name}</p>
-                          <p className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>{attempt.student.email}</p>
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm" style={{ color: 'var(--color-text-secondary)' }}>
-                        {new Date(attempt.startedAt).toLocaleString()}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <span 
-                          className="inline-flex px-2 py-1 text-xs font-semibold rounded-full"
-                          style={{ 
-                            backgroundColor: attempt.finishedAt ? 'rgba(16, 185, 129, 0.1)' : 'rgba(245, 158, 11, 0.1)',
-                            color: attempt.finishedAt ? 'var(--color-success)' : 'var(--color-warning)'
-                          }}
-                        >
-                          {attempt.finishedAt ? 'Completed' : 'In Progress'}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm">
-                        <span style={getViolationSeverity(attempt.tabSwitchCount)}>
-                          {attempt.tabSwitchCount}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm">
-                        <span style={getViolationSeverity(attempt.fullscreenExitCount)}>
-                          {attempt.fullscreenExitCount}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm">
-                        <span style={getViolationSeverity(attempt.multipleFacesCount)}>
-                          {attempt.multipleFacesCount}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm">
-                        <span style={getViolationSeverity(attempt.phoneDetectionCount)}>
-                          {attempt.phoneDetectionCount}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <span 
-                          className="font-bold" 
-                          style={getViolationSeverity(getTotalViolations(attempt))}
-                        >
-                          {getTotalViolations(attempt)}
-                        </span>
-                      </td>
+              <div className="min-w-full" style={{ width: '100%', maxWidth: '80vw' }}>
+                <table className="w-full divide-y" style={{ borderColor: 'var(--color-surface-light)' }}>
+                  <thead style={{ backgroundColor: 'var(--color-surface-light)' }}>
+                    <tr>
+                      <th className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider" style={{ color: 'var(--color-text)', minWidth: '180px' }}>
+                        Student
+                      </th>
+                      <th className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider" style={{ color: 'var(--color-text)', minWidth: '140px' }}>
+                        Started
+                      </th>
+                      <th className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider" style={{ color: 'var(--color-text)', minWidth: '100px' }}>
+                        Status
+                      </th>
+                      <th className="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider" style={{ color: 'var(--color-text)', minWidth: '80px' }}>
+                        Tab Switch
+                      </th>
+                      <th className="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider" style={{ color: 'var(--color-text)', minWidth: '80px' }}>
+                        Fullscreen Exit
+                      </th>
+                      <th className="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider" style={{ color: 'var(--color-text)', minWidth: '80px' }}>
+                        Multiple Faces
+                      </th>
+                      <th className="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider" style={{ color: 'var(--color-text)', minWidth: '80px' }}>
+                        Phone Detection
+                      </th>
+                      <th className="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider" style={{ color: 'var(--color-text)', minWidth: '60px' }}>
+                        Total
+                      </th>
+                      <th className="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider" style={{ color: 'var(--color-text)', minWidth: '120px' }}>
+                        Actions
+                      </th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody className="divide-y" style={{ backgroundColor: 'var(--color-surface)', borderColor: 'var(--color-surface-light)' }}>
+                    {attempts.map((attempt) => (
+                      <tr key={attempt.id} className="hover:bg-opacity-50" style={{ backgroundColor: 'transparent' }}>
+                        <td className="px-3 py-4 whitespace-nowrap" style={{ minWidth: '180px' }}>
+                          <div>
+                            <p className="font-medium text-sm" style={{ color: 'var(--color-text)' }}>{attempt.student.name}</p>
+                            <p className="text-xs truncate" style={{ color: 'var(--color-text-secondary)', maxWidth: '160px' }} title={attempt.student.email}>
+                              {attempt.student.email}
+                            </p>
+                          </div>
+                        </td>
+                        <td className="px-3 py-4 whitespace-nowrap text-xs" style={{ color: 'var(--color-text-secondary)', minWidth: '140px' }}>
+                          {new Date(attempt.startedAt).toLocaleDateString('en-GB', {
+                            day: '2-digit',
+                            month: '2-digit',
+                            year: '2-digit',
+                            hour: '2-digit',
+                            minute: '2-digit'
+                          })}
+                        </td>
+                        <td className="px-3 py-4 whitespace-nowrap" style={{ minWidth: '100px' }}>
+                          <span 
+                            className="inline-flex px-2 py-1 text-xs font-semibold rounded-full"
+                            style={{ 
+                              backgroundColor: attempt.finishedAt ? 'rgba(16, 185, 129, 0.1)' : 'rgba(245, 158, 11, 0.1)',
+                              color: attempt.finishedAt ? 'var(--color-success)' : 'var(--color-warning)'
+                            }}
+                          >
+                            {attempt.finishedAt ? 'Completed' : 'In Progress'}
+                          </span>
+                        </td>
+                        <td className="px-3 py-4 whitespace-nowrap text-sm text-center" style={{ minWidth: '80px' }}>
+                          <span 
+                            className="inline-flex items-center justify-center w-8 h-8 rounded-full text-xs font-bold"
+                            style={{
+                              backgroundColor: getViolationSeverity(attempt.tabSwitchCount).bg,
+                              color: getViolationSeverity(attempt.tabSwitchCount).color
+                            }}
+                          >
+                            {attempt.tabSwitchCount}
+                          </span>
+                        </td>
+                        <td className="px-3 py-4 whitespace-nowrap text-sm text-center" style={{ minWidth: '80px' }}>
+                          <span 
+                            className="inline-flex items-center justify-center w-8 h-8 rounded-full text-xs font-bold"
+                            style={{
+                              backgroundColor: getViolationSeverity(attempt.fullscreenExitCount).bg,
+                              color: getViolationSeverity(attempt.fullscreenExitCount).color
+                            }}
+                          >
+                            {attempt.fullscreenExitCount}
+                          </span>
+                        </td>
+                        <td className="px-3 py-4 whitespace-nowrap text-sm text-center" style={{ minWidth: '80px' }}>
+                          <span 
+                            className="inline-flex items-center justify-center w-8 h-8 rounded-full text-xs font-bold"
+                            style={{
+                              backgroundColor: getViolationSeverity(attempt.multipleFacesCount).bg,
+                              color: getViolationSeverity(attempt.multipleFacesCount).color
+                            }}
+                          >
+                            {attempt.multipleFacesCount}
+                          </span>
+                        </td>
+                        <td className="px-3 py-4 whitespace-nowrap text-sm text-center" style={{ minWidth: '80px' }}>
+                          <span 
+                            className="inline-flex items-center justify-center w-8 h-8 rounded-full text-xs font-bold"
+                            style={{
+                              backgroundColor: getViolationSeverity(attempt.phoneDetectionCount).bg,
+                              color: getViolationSeverity(attempt.phoneDetectionCount).color
+                            }}
+                          >
+                            {attempt.phoneDetectionCount}
+                          </span>
+                        </td>
+                        <td className="px-3 py-4 whitespace-nowrap text-center" style={{ minWidth: '60px' }}>
+                          <span 
+                            className="inline-flex items-center justify-center w-10 h-10 rounded-full text-sm font-bold"
+                            style={{
+                              backgroundColor: getViolationSeverity(getTotalViolations(attempt)).bg,
+                              color: getViolationSeverity(getTotalViolations(attempt)).color
+                            }}
+                          >
+                            {getTotalViolations(attempt)}
+                          </span>
+                        </td>
+                        <td className="px-3 py-4 whitespace-nowrap text-center" style={{ minWidth: '120px' }}>
+                          <button
+                            onClick={() => handleShowEvidence(attempt.id)}
+                            className="inline-flex items-center px-2 py-1 text-xs font-medium rounded-md transition-colors duration-200 hover:opacity-80"
+                            style={{
+                              backgroundColor: 'var(--color-primary)',
+                              color: 'white'
+                            }}
+                          >
+                            <Image className="h-3 w-3 mr-1" />
+                            Evidence
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           )}
         </div>

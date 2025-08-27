@@ -1,6 +1,10 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+
+html {
+  zoom: 0.8;
+}
 @theme {
   --color-background: #0b1426;
   --color-surface: #1a2332;
