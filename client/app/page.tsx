@@ -4,44 +4,6 @@ import Link from 'next/link';
 import { Shield, Users, Clock, CheckCircle, Zap, Eye, Lock, ArrowRight, Star, Award, Monitor, AlertTriangle, Camera, Smartphone, TabletSmartphone, Chrome, MessageSquare, Quote } from 'lucide-react';
 
 export default function HomePage() {
-  const testimonials = [
-    {
-      name: "Dr. Sarah Chen",
-      role: "Computer Science Professor",
-      university: "Stanford University",
-      quote: "Proctorap has revolutionized our online assessments. The AI detection is incredibly accurate and saves us hours of manual monitoring.",
-      avatar: "SC"
-    },
-    {
-      name: "Michael Rodriguez",
-      role: "Assessment Coordinator", 
-      university: "MIT",
-      quote: "The seamless integration with Google Forms made our transition effortless. Students can't even tell they're being monitored!",
-      avatar: "MR"
-    },
-    {
-      name: "Prof. Emily Watson",
-      role: "Department Head",
-      university: "Harvard Medical School",
-      quote: "We've seen a 85% reduction in academic dishonesty since implementing Proctorap. It's a game-changer.",
-      avatar: "EW"
-    },
-    {
-      name: "James Liu",
-      role: "IT Director",
-      university: "UC Berkeley",
-      quote: "Setup took literally 2 minutes. The detailed analytics help us identify patterns and improve our assessment security.",
-      avatar: "JL"
-    },
-    {
-      name: "Dr. Amanda Foster",
-      role: "Online Learning Director",
-      university: "NYU",
-      quote: "Our students appreciate the transparent monitoring. It creates a fair environment for everyone.",
-      avatar: "AF"
-    }
-  ];
-
   const platformTabs = [
     { name: "Google Forms", key: "google" },
     { name: "Microsoft Forms", key: "microsoft" },
@@ -250,7 +212,7 @@ export default function HomePage() {
             <div className="hidden md:flex items-center space-x-8">
               <a href="#features" className="text-text-secondary hover:text-primary transition-colors text-sm font-medium">Features</a>
               <a href="#how-it-works" className="text-text-secondary hover:text-primary transition-colors text-sm font-medium">How it Works</a>
-              <a href="#testimonials" className="text-text-secondary hover:text-primary transition-colors text-sm font-medium">Reviews</a>
+              <a href="#why-choose" className="text-text-secondary hover:text-primary transition-colors text-sm font-medium">Why Choose</a>
             </div>
             <div className="flex items-center space-x-4">
               <Link href="/login" className="text-text-secondary hover:text-primary transition-colors text-sm font-medium">
@@ -263,14 +225,15 @@ export default function HomePage() {
           </div>
         </div>
       </nav>
+
       {/* Hero Section */}
       <section className="hero-section py-20 lg:py-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-4xl mx-auto">
-            {/* <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-8">
-              <Star className="h-4 w-4 text-primary mr-2" />
-              <span className="text-sm font-medium text-primary">Trusted by 1,200+ Educational Institutions</span>
-            </div> */}
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-8">
+              <Zap className="h-4 w-4 text-primary mr-2" />
+              <span className="text-sm font-medium text-primary"> Now in Early Access - Be Among the First!</span>
+            </div>
             <h1 className="text-4xl lg:text-5xl font-bold text-text mb-6 leading-tight">
               Stop Cheating Before It 
               <span className="text-gradient block lg:inline"> Even Starts</span>
@@ -280,7 +243,7 @@ export default function HomePage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
               <Link href="/register" className="btn btn-primary px-8 py-4 text-base">
-                Start Free Trial
+                Join Early Access
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
               <Link href="#demo" className="btn btn-outline px-8 py-4 text-base">
@@ -293,21 +256,256 @@ export default function HomePage() {
                 <div className="text-sm text-text-muted">Setup Time</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-primary">94%</div>
-                <div className="text-sm text-text-muted">Cheat Prevention</div>
+                <div className="text-2xl font-bold text-primary">Real-Time</div>
+                <div className="text-sm text-text-muted">AI Detection</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-primary">Zero</div>
                 <div className="text-sm text-text-muted">Downloads</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-primary">Robust</div>
-                <div className="text-sm text-text-muted">AI Monitoring</div>
+                <div className="text-2xl font-bold text-primary">7</div>
+                <div className="text-sm text-text-muted">Detection Types</div>
               </div>
             </div>
           </div>
         </div>
       </section>
+
+      {/* How It Works - Before/After Transformation */}
+      <section id="how-it-works" className="py-20 bg-surface/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-text mb-4">
+              See The Transformation
+            </h2>
+            <p className="text-text-secondary max-w-2xl mx-auto">
+              Watch how Proctorap instantly converts any regular online test into a secure, monitored assessment
+            </p>
+          </div>
+          
+          {/* Browsers Section */}
+          <div className="flex items-center justify-center space-x-8 mb-16 max-w-7xl mx-auto">
+            
+            {/* Step 1: Original Unsecured Test */}
+            <div className="text-center flex-shrink-0 w-96">
+              <div className="bg-surface border-2 border-danger/30 rounded-lg overflow-hidden shadow-lg mb-4">
+                {/* Browser Header */}
+                <div className="bg-surface-light px-4 py-3 border-b border-surface-light flex items-center space-x-2">
+                  <div className="flex space-x-1">
+                    <div className="w-3 h-3 bg-danger rounded-full"></div>
+                    <div className="w-3 h-3 bg-warning rounded-full"></div>
+                    <div className="w-3 h-3 bg-success rounded-full"></div>
+                  </div>
+                  <div className="flex-1 bg-background rounded px-3 py-2 text-sm text-text-muted truncate">
+                    https://forms.google.com/test-quiz
+                  </div>
+                  <div className="bg-danger/20 text-danger text-sm px-3 py-1 rounded border border-danger/30">
+                    UNSECURED
+                  </div>
+                </div>
+                {/* Browser Content */}
+                <div className="p-6 bg-background h-64">
+                  <h3 className="text-lg font-semibold text-text mb-4">Final Exam - Chemistry</h3>
+                  <div className="space-y-3">
+                    <div className="text-sm text-text-secondary">Question 1: What is the molecular formula for water?</div>
+                    <div className="flex space-x-2">
+                      <input type="radio" className="mt-1" />
+                      <label className="text-sm text-text-secondary">A) H2O</label>
+                    </div>
+                    <div className="flex space-x-2">
+                      <input type="radio" className="mt-1" />
+                      <label className="text-sm text-text-secondary">B) CO2</label>
+                    </div>
+                    <div className="flex space-x-2">
+                      <input type="radio" className="mt-1" />
+                      <label className="text-sm text-text-secondary">C) NaCl</label>
+                    </div>
+                    <div className="flex space-x-2">
+                      <input type="radio" className="mt-1" />
+                      <label className="text-sm text-text-secondary">D) CH4</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h4 className="font-semibold text-text mb-2">Regular Test</h4>
+              <p className="text-sm text-text-secondary">Vulnerable to cheating</p>
+            </div>
+
+            {/* Arrow */}
+            <div className="flex justify-center flex-shrink-0">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <ArrowRight className="h-8 w-8 text-primary" />
+                </div>
+                <div className="text-sm font-medium text-primary">Wrap SAME test link with Proctorap</div>
+              </div>
+            </div>
+
+            {/* Step 2: Proctorap Secured Test - Same size as left */}
+            <div className="text-center flex-shrink-0 w-96">
+              <div className="bg-surface border-2 border-success/30 rounded-lg overflow-hidden shadow-lg mb-4">
+                {/* Browser Header */}
+                <div className="bg-surface-light px-4 py-3 border-b border-surface-light flex items-center space-x-2">
+                  <div className="flex space-x-1">
+                    <div className="w-3 h-3 bg-danger rounded-full"></div>
+                    <div className="w-3 h-3 bg-warning rounded-full"></div>
+                    <div className="w-3 h-3 bg-success rounded-full"></div>
+                  </div>
+                  <div className="flex-1 bg-background rounded px-3 py-2 text-sm text-text-muted truncate">
+                    https://proctorap.com/secure/abc123
+                  </div>
+                  <div className="flex space-x-1">
+                    <div className="bg-success/20 text-success text-sm px-2 py-1 rounded border border-success/30">
+                      SECURED
+                    </div>
+                    <div className="bg-primary/20 text-primary text-sm px-2 py-1 rounded border border-primary/30">
+                      MONITORED
+                    </div>
+                  </div>
+                </div>
+                {/* Browser Content */}
+                <div className="p-6 bg-background h-64">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-lg font-semibold text-text">Final Exam - Chemistry</h3>
+                    <div className="flex items-center space-x-2">
+                      <div className="w-2 h-2 bg-success rounded-full"></div>
+                      <span className="text-sm text-success">LIVE</span>
+                    </div>
+                  </div>
+                  <div className="space-y-3">
+                    <div className="text-sm text-text-secondary">Question 1: What is the molecular formula for water?</div>
+                    <div className="flex space-x-2">
+                      <input type="radio" className="mt-1" />
+                      <label className="text-sm text-text-secondary">A) H2O</label>
+                    </div>
+                    <div className="flex space-x-2">
+                      <input type="radio" className="mt-1" />
+                      <label className="text-sm text-text-secondary">B) CO2</label>
+                    </div>
+                    <div className="flex space-x-2">
+                      <input type="radio" className="mt-1" />
+                      <label className="text-sm text-text-secondary">C) NaCl</label>
+                    </div>
+                    <div className="flex space-x-2">
+                      <input type="radio" className="mt-1" />
+                      <label className="text-sm text-text-secondary">D) CH4</label>
+                    </div>
+                  </div>
+                  {/* Monitoring indicators */}
+                  <div className="mt-4 flex items-center space-x-4 text-xs">
+                    <div className="flex items-center space-x-1">
+                      <Camera className="h-3 w-3 text-success" />
+                      <span className="text-text-muted">Camera Active</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <Eye className="h-3 w-3 text-success" />
+                      <span className="text-text-muted">Screen Monitor</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h4 className="font-semibold text-text mb-2">Proctorap Protected</h4>
+              <p className="text-sm text-text-secondary">Same test, now secure</p>
+            </div>
+          </div>
+
+          {/* Step 3: Admin Dashboard */}
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-6">
+              <ArrowRight className="h-6 w-6 text-primary mx-auto mb-2 rotate-90" />
+              <h4 className="font-semibold text-text">Real-Time Monitoring Dashboard</h4>
+            </div>
+            
+            <div className="bg-surface border border-surface-light rounded-lg overflow-hidden shadow-lg">
+              {/* Dashboard Header */}
+              <div className="bg-surface-light px-6 py-3 border-b border-surface-light">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-lg font-semibold text-text">Final Exam - Chemistry | Live Session</h3>
+                  <div className="flex items-center space-x-4">
+                    <span className="text-sm text-text-secondary">6 Students Online</span>
+                    <div className="w-2 h-2 bg-success rounded-full"></div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Student List */}
+              <div className="p-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  
+                  {/* Student 1 - Clean */}
+                  <div className="bg-background border border-success/30 rounded-lg p-4">
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="font-medium text-text">Sarah Johnson</div>
+                      <div className="w-2 h-2 bg-success rounded-full"></div>
+                    </div>
+                    <div className="text-sm text-text-secondary mb-2">Violations: 0</div>
+                    <div className="text-xs text-success">Status: Clean</div>
+                  </div>
+
+                  {/* Student 2 - Violations */}
+                  <div className="bg-background border border-warning/30 rounded-lg p-4">
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="font-medium text-text">Mike Chen</div>
+                      <div className="w-2 h-2 bg-warning rounded-full"></div>
+                    </div>
+                    <div className="text-sm text-text-secondary mb-2">Violations: 3</div>
+                    <button className="text-xs bg-warning/20 text-warning px-2 py-1 rounded border border-warning/30 hover:bg-warning/30 transition-colors">
+                      Show Evidence
+                    </button>
+                  </div>
+
+                  {/* Student 3 - High Risk */}
+                  <div className="bg-background border border-danger/30 rounded-lg p-4">
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="font-medium text-text">Alex Rivera</div>
+                      <div className="w-2 h-2 bg-danger rounded-full"></div>
+                    </div>
+                    <div className="text-sm text-text-secondary mb-2">Violations: 7</div>
+                    <button className="text-xs bg-danger/20 text-danger px-2 py-1 rounded border border-danger/30 hover:bg-danger/30 transition-colors">
+                      Show Evidence
+                    </button>
+                  </div>
+
+                  {/* Student 4 - Clean */}
+                  <div className="bg-background border border-success/30 rounded-lg p-4">
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="font-medium text-text">Emma Davis</div>
+                      <div className="w-2 h-2 bg-success rounded-full"></div>
+                    </div>
+                    <div className="text-sm text-text-secondary mb-2">Violations: 0</div>
+                    <div className="text-xs text-success">Status: Clean</div>
+                  </div>
+
+                  {/* Student 5 - Minor Violations */}
+                  <div className="bg-background border border-warning/30 rounded-lg p-4">
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="font-medium text-text">John Smith</div>
+                      <div className="w-2 h-2 bg-warning rounded-full"></div>
+                    </div>
+                    <div className="text-sm text-text-secondary mb-2">Violations: 1</div>
+                    <button className="text-xs bg-warning/20 text-warning px-2 py-1 rounded border border-warning/30 hover:bg-warning/30 transition-colors">
+                      Show Evidence
+                    </button>
+                  </div>
+
+                  {/* Student 6 - Clean */}
+                  <div className="bg-background border border-success/30 rounded-lg p-4">
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="font-medium text-text">Lisa Wang</div>
+                      <div className="w-2 h-2 bg-success rounded-full"></div>
+                    </div>
+                    <div className="text-sm text-text-secondary mb-2">Violations: 0</div>
+                    <div className="text-xs text-success">Status: Clean</div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Platform Integration Section (tabs) */}
       <section className="py-20 bg-surface/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -342,8 +540,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
       {/* AI Detection Features */}
-      <section className="py-20">
+      <section id="features" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-text mb-4">
@@ -406,174 +605,132 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      {/* Testimonials Section */}
-     {/* Testimonial Section - Cheater & Educator Quotes */}
-<section id="testimonials" className="py-20 bg-surface/30">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-    {/* "Our Users Hate Us" */}
-    <div className="text-center mb-16">
-      <h2 className="text-3xl font-bold text-text mb-2">
-        Our Users <span className="relative text-danger">
-          <s>Love</s><span className="ml-1">Hate</span></span> Us!
-      </h2>
-      <p className="text-text-secondary max-w-xl mx-auto">Real quotes from frustrated cheaters — Proctorap stops them in their tracks.</p>
-    </div>
-    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 mb-20">
-      <div className="stats-card text-center p-6">
-        <div className="text-3xl mb-4">😡</div>
-        <p className="text-text-secondary text-base mb-0">"Who created Proctorap? I just want to 'talk'..."</p>
-      </div>
-      <div className="stats-card text-center p-6">
-        <div className="text-3xl mb-4">🤬</div>
-        <p className="text-text-secondary text-base mb-0">"Proctorap is the work of the devil—caught me tab switching twice!"</p>
-      </div>
-      <div className="stats-card text-center p-6">
-        <div className="text-3xl mb-4">😈</div>
-        <p className="text-text-secondary text-base mb-0">"How did it know I was on my phone under the table?"</p>
-      </div>
-      <div className="stats-card text-center p-6">
-        <div className="text-3xl mb-4">😭</div>
-        <p className="text-text-secondary text-base mb-0">"Third attempt, third time flagged... Impossible to cheat now!"</p>
-      </div>
-      <div className="stats-card text-center p-6">
-        <div className="text-3xl mb-4">🙄</div>
-        <p className="text-text-secondary text-base mb-0">"Switched to incognito, it still caught me. Respect."</p>
-      </div>
-    </div>
-
-    {/* Divider */}
-    <div className="flex items-center justify-center my-12">
-      <div className="w-1/6 h-px bg-surface-light"></div>
-      <span className="mx-4 text-text-muted text-lg font-bold">But Educators Love Us</span>
-      <div className="w-1/6 h-px bg-surface-light"></div>
-    </div>
-
-    {/* Educator Testimonials */}
-    <div className="text-center mb-16">
-      <h2 className="text-3xl font-bold text-text mb-4">
-        Educators Love Proctorap
-      </h2>
-      <p className="text-text-secondary max-w-2xl mx-auto">
-        Join thousands of satisfied educators who've transformed their online assessments
-      </p>
-    </div>
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {[
-        {
-          name: "Dr. Sarah Chen",
-          role: "Computer Science Professor",
-          university: "Stanford University",
-          quote: "Proctorap has revolutionized our online assessments. The AI detection is incredibly accurate and saves us hours of manual monitoring.",
-          avatar: "SC"
-        },
-        {
-          name: "Michael Rodriguez",
-          role: "Assessment Coordinator", 
-          university: "MIT",
-          quote: "The seamless integration with Google Forms made our transition effortless. Students can't even tell they're being monitored!",
-          avatar: "MR"
-        },
-        {
-          name: "Prof. Emily Watson",
-          role: "Department Head",
-          university: "Harvard Medical School",
-          quote: "We've seen an 85% reduction in academic dishonesty since implementing Proctorap. It's a game-changer.",
-          avatar: "EW"
-        },
-        {
-          name: "James Liu",
-          role: "IT Director",
-          university: "UC Berkeley",
-          quote: "Setup took literally 2 minutes. The detailed analytics help us identify patterns and improve our assessment security.",
-          avatar: "JL"
-        },
-        {
-          name: "Dr. Amanda Foster",
-          role: "Online Learning Director",
-          university: "NYU",
-          quote: "Our students appreciate the transparent monitoring. It creates a fair environment for everyone.",
-          avatar: "AF"
-        }
-      ].map((testimonial, idx) => (
-        <div key={idx} className="stats-card relative">
-          <Quote className="h-6 w-6 text-primary/30 absolute top-4 left-4" />
-          <div className="pt-4">
-            <p className="text-text-secondary mb-6 italic">"{testimonial.quote}"</p>
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center">
-                <span className="text-sm font-semibold text-primary">{testimonial.avatar}</span>
-              </div>
-              <div>
-                <div className="font-semibold text-text text-sm">{testimonial.name}</div>
-                <div className="text-xs text-text-muted">{testimonial.role}</div>
-                <div className="text-xs text-text-muted">{testimonial.university}</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-    <div className="text-center mt-12">
-      <div className="inline-flex items-center space-x-4">
-        <div className="flex -space-x-2">{[1,2,3,4,5].map(i => (
-          <Star key={i} className="h-5 w-5 text-warning fill-current" />
-        ))}</div>
-        <span className="text-text-secondary">4.9/5 from 1,200+ educators and partners</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-      {/* Statistics Section */}
-      <section className="py-20">
+      {/* Why Choose Proctorap Section */}
+      <section id="why-choose" className="py-20 bg-surface/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-text mb-4">
-              Proven Results Across Institutions
+              Why Choose Proctorap?
             </h2>
+            <p className="text-text-secondary max-w-2xl mx-auto">
+              Built by developers who understand the real challenges of online assessment security
+            </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="w-20 h-20 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <Users className="h-10 w-10 text-primary" />
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="stats-card text-center">
+              <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <Zap className="h-8 w-8 text-primary" />
               </div>
-              <div className="text-3xl font-bold text-text mb-2">50,000+</div>
-              <div className="text-text-secondary">Students Monitored</div>
+              <h3 className="text-xl font-semibold text-text mb-2">Lightning Fast Setup</h3>
+              <p className="text-text-secondary">
+                No complex installations or configurations. Just paste your test URL and you're secured in 30 seconds.
+              </p>
             </div>
-            <div className="text-center">
-              <div className="w-20 h-20 bg-success/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <Shield className="h-10 w-10 text-success" />
+            
+            <div className="stats-card text-center">
+              <div className="w-16 h-16 bg-success/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <Eye className="h-8 w-8 text-success" />
               </div>
-              <div className="text-3xl font-bold text-text mb-2">94%</div>
-              <div className="text-text-secondary">Reduction in Cheating</div>
+              <h3 className="text-xl font-semibold text-text mb-2">Advanced AI Detection</h3>
+              <p className="text-text-secondary">
+                Our machine learning algorithms detect cheating patterns that humans might miss, in real-time.
+              </p>
             </div>
-            <div className="text-center">
-              <div className="w-20 h-20 bg-accent/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <Clock className="h-10 w-10 text-accent" />
+            
+            <div className="stats-card text-center">
+              <div className="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <Shield className="h-8 w-8 text-accent" />
               </div>
-              <div className="text-3xl font-bold text-text mb-2">2 min</div>
-              <div className="text-text-secondary">Average Setup Time</div>
+              <h3 className="text-xl font-semibold text-text mb-2">Privacy Focused</h3>
+              <p className="text-text-secondary">
+                We only monitor what's necessary for security. No unnecessary data collection or privacy violations.
+              </p>
             </div>
-            <div className="text-center">
-              <div className="w-20 h-20 bg-warning/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <Award className="h-10 w-10 text-warning" />
+            
+            <div className="stats-card text-center">
+              <div className="w-16 h-16 bg-warning/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <Users className="h-8 w-8 text-warning" />
               </div>
-              <div className="text-3xl font-bold text-text mb-2">99.9%</div>
-              <div className="text-text-secondary">Uptime Reliability</div>
+              <h3 className="text-xl font-semibold text-text mb-2">Scale Ready</h3>
+              <p className="text-text-secondary">
+                From 5 students to 5,000. Our infrastructure grows with your needs without missing a beat.
+              </p>
+            </div>
+            
+            <div className="stats-card text-center">
+              <div className="w-16 h-16 bg-blue-500/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <Clock className="h-8 w-8 text-blue-500" />
+              </div>
+              <h3 className="text-xl font-semibold text-text mb-2">Real-Time </h3>
+              <p className="text-text-secondary">
+                Get instant evidence/s when violations occur, so you can take action immediately.
+              </p>
+            </div>
+            
+            <div className="stats-card text-center">
+              <div className="w-16 h-16 bg-green-500/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <CheckCircle className="h-8 w-8 text-green-500" />
+              </div>
+              <h3 className="text-xl font-semibold text-text mb-2">Evidence Based</h3>
+              <p className="text-text-secondary">
+                Every violation comes with timestamped evidence, so you have proof when you need it.
+              </p>
             </div>
           </div>
         </div>
       </section>
-      {/* CTA Section */}
+
+      {/* Fun Anti-Cheater Section */}
       <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-text mb-2">
+              Users <span className="relative text-danger">
+                <s>Love</s> Hate
+              </span> Us!
+            </h2>
+
+            <p className="text-text-secondary max-w-xl mx-auto">
+              And that's exactly how we know it's working. Here's what frustrated cheaters are saying...
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8">
+            <div className="stats-card text-center p-6">
+              <div className="text-3xl mb-4">😡</div>
+              <p className="text-text-secondary text-base mb-0">"This thing caught me switching tabs in 2 seconds!"</p>
+            </div>
+            <div className="stats-card text-center p-6">
+              <div className="text-3xl mb-4">🤬</div>
+              <p className="text-text-secondary text-base mb-0">"Even incognito mode doesn't work. How is this possible?!"</p>
+            </div>
+            <div className="stats-card text-center p-6">
+              <div className="text-3xl mb-4">😈</div>
+              <p className="text-text-secondary text-base mb-0">"It detected my phone under the desk. AI is getting scary."</p>
+            </div>
+            <div className="stats-card text-center p-6">
+              <div className="text-3xl mb-4">😭</div>
+              <p className="text-text-secondary text-base mb-0">"Third attempt, still getting caught. Time to actually study..."</p>
+            </div>
+            <div className="stats-card text-center p-6">
+              <div className="text-3xl mb-4">🙄</div>
+              <p className="text-text-secondary text-base mb-0">"Okay fine, this actually works. Respect."</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-surface/30">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <div className="glassmorphism">
             <h2 className="text-3xl font-bold text-text mb-4">
-              Ready to Eliminate Cheating?
+              Ready to Secure Your Tests?
             </h2>
             <p className="text-text-secondary mb-8 max-w-2xl mx-auto">
-              Join 1,200+ institutions using Proctorap to maintain academic integrity. Start your free trial today - no credit card required.
+              Join our early access program and be among the first to experience next-generation online assessment security. No credit card required.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link href="/register" className="btn btn-primary px-8 py-4">
@@ -590,6 +747,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
       {/* Footer */}
       <footer className="border-t border-surface-light bg-surface/50 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -600,48 +758,20 @@ export default function HomePage() {
                 <span className="text-lg font-bold text-gradient">Proctorap</span>
               </div>
               <p className="text-text-secondary mb-4">
-                The most trusted anti-cheating solution for online assessments. Secure, reliable, and easy to use.
+                The next-generation anti-cheating solution for online assessments. Secure, intelligent, and easy to use.
               </p>
-              <div className="flex items-center space-x-4">
-                <div className="flex -space-x-2">
-                  {[1,2,3,4,5].map((i) => (
-                    <Star key={i} className="h-4 w-4 text-warning fill-current" />
-                  ))}
-                </div>
-                <span className="text-sm text-text-muted">4.9/5 rating</span>
-              </div>
             </div>
-            <div>
-              <h4 className="font-semibold text-text mb-4">Product</h4>
-              <ul className="space-y-2 text-sm text-text-secondary">
-                <li><a href="#" className="hover:text-primary transition-colors">Features</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Pricing</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Security</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Integrations</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold text-text mb-4">Support</h4>
-              <ul className="space-y-2 text-sm text-text-secondary">
-                <li><a href="#" className="hover:text-primary transition-colors">Help Center</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Documentation</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Contact Us</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">System Status</a></li>
-              </ul>
-            </div>
+            
           </div>
           <div className="border-t border-surface-light mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
             <div className="text-sm text-text-muted">
               © 2025 Proctorap. All rights reserved.
             </div>
-            <div className="flex items-center space-x-6 mt-4 md:mt-0">
-              <a href="#" className="text-sm text-text-muted hover:text-primary transition-colors">Privacy</a>
-              <a href="#" className="text-sm text-text-muted hover:text-primary transition-colors">Terms</a>
-              <a href="#" className="text-sm text-text-muted hover:text-primary transition-colors">Security</a>
-            </div>
+          
           </div>
         </div>
       </footer>
+      
     </div>
   );
 }
