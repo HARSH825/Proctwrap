@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://proctwrap.onrender.com';
+const API_BASE_URL = 'https://proctwrap.onrender.com';
 
 export const api = axios.create({
   baseURL: API_BASE_URL,

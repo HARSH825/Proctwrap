@@ -232,7 +232,7 @@ export default function SecureTestPage() {
         formData.append('image', blob, `${type.toLowerCase()}_violation.jpg`);
       }
 
-      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/v1/violation/attempts/${attemptId}/violation`, {
+      await fetch(`https://proctwrap.onrender.com/v1/violation/attempts/${attemptId}/violation`, {
         method: 'PATCH',
         body: formData,
       });
