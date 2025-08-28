@@ -211,6 +211,11 @@ export default function HomePage() {
       description: "Monitors fullscreen mode violations"
     },
     {
+      icon: <Monitor className="h-5 w-5" />,
+      label: "Evidence Capture",
+      description: "Captures screenshots of candidates screen on every violation."
+    },
+    {
       icon: <Camera className="h-5 w-5" />,
       label: "Multiple Faces",
       description: "AI identifies multiple people on screen"
@@ -227,8 +232,8 @@ export default function HomePage() {
     },
     {
       icon: <Eye className="h-5 w-5" />,
-      label: "Eye Tracking",
-      description: "Advanced gaze pattern analysis"
+      label: "Multiple desktop checks",
+      description: "Checks for any remote/shared desktop constantly"
     }
   ];
 
@@ -271,7 +276,7 @@ export default function HomePage() {
               <span className="text-gradient block lg:inline"> Even Starts</span>
             </h1>
             <p className="text-lg text-text-secondary mb-8 max-w-2xl mx-auto leading-relaxed">
-              Transform any online form into a secure, AI-monitored assessment in under 30 seconds. Works with Google Forms, Microsoft Forms, and any web platform.
+              Transform any online test into a secure, AI-monitored assessment in under 30 seconds. Works with Google Forms, Microsoft Forms, and any web platform.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
               <Link href="/register" className="btn btn-primary px-8 py-4 text-base">
