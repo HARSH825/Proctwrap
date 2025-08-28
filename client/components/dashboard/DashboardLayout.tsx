@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Shield, Home, FileText, Users, Settings, LogOut, Menu, X } from 'lucide-react';
+import { Shell, Home, FileText, Users, Settings, LogOut, Menu, X } from 'lucide-react';
 import { auth } from '../../lib/auth';
 
 interface DashboardLayoutProps {
@@ -55,7 +55,7 @@ export default function DashboardLayout({ children, title }: DashboardLayoutProp
         <div className="flex items-center justify-between p-6 border-b border-surface-light">
           <div className="flex items-center space-x-3">
             <div className="p-2 bg-gradient-to-r from-primary to-primary-light rounded-lg">
-              <Shield className="h-6 w-6 text-background" />
+              <Shell className="h-6 w-6 text-background" />
             </div>
             <div>
               <h1 className="text-lg font-bold text-text">Proctorap</h1>
@@ -78,15 +78,9 @@ export default function DashboardLayout({ children, title }: DashboardLayoutProp
               className="sidebar-item flex items-center space-x-3"
             >
               <Home className="h-5 w-5" />
-              <span>Dashboard</span>
-            </a>
-            <a
-              href="/dashboard/tests"
-              className="sidebar-item flex items-center space-x-3"
-            >
-              <FileText className="h-5 w-5" />
-              <span>My Tests</span>
-            </a>
+              <span>Dashboard</span>    
+              </a>
+          
           </div>
         </nav>
 

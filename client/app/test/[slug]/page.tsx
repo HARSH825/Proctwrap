@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { useParams, useSearchParams, useRouter } from 'next/navigation';
-import { Shield, AlertTriangle, CheckCircle, Maximize } from 'lucide-react';
+import { Shell, AlertTriangle, CheckCircle, Maximize } from 'lucide-react';
 import { testAPI, attemptAPI } from '../../../lib/api';
 
 export default function SecureTestPage() {
@@ -529,7 +529,7 @@ export default function SecureTestPage() {
     return (
       <div className="fixed inset-0 flex items-center justify-center z-50" style={{ backgroundColor: 'rgba(11, 20, 38, 0.95)' }}>
         <div className="card max-w-lg mx-4 text-center">
-          <Shield className="h-16 w-16 mx-auto mb-4" style={{ color: 'var(--color-primary)' }} />
+          <Shell className="h-16 w-16 mx-auto mb-4" style={{ color: 'var(--color-primary)' }} />
           <h2 className="text-2xl font-bold mb-4" style={{ color: 'var(--color-text)' }}>
             Screen Sharing Required
           </h2>
@@ -620,7 +620,7 @@ export default function SecureTestPage() {
         <div className="absolute top-0 left-0 w-full text-white p-3 text-center text-sm z-20 shadow-lg" style={{ background: 'linear-gradient(90deg, var(--color-danger), #dc2626)' }}>
           <div className="flex items-center justify-center space-x-6">
             <div className="flex items-center space-x-2">
-              <Shield className="h-4 w-4" />
+              <Shell className="h-4 w-4" />
               <span className="font-semibold">Procotorap MONITORING TEST : Active</span>
             </div>
             <div className="hidden md:flex items-center space-x-4">

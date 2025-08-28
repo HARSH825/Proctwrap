@@ -1,7 +1,7 @@
 'use client';
 import { JSX, useState } from 'react';
 import Link from 'next/link';
-import { Shield, Users, Clock, CheckCircle, Zap, Eye, Lock, ArrowRight, Star, Award, Monitor, AlertTriangle, Camera, Smartphone, TabletSmartphone, Chrome, MessageSquare, Quote } from 'lucide-react';
+import { Shell, Users, Clock, CheckCircle, Zap, Eye, Lock, ArrowRight, Star, Award, Monitor, AlertTriangle, Camera, Smartphone, TabletSmartphone, Chrome, MessageSquare, Quote } from 'lucide-react';
 
 export default function HomePage() {
   const platformTabs = [
@@ -18,7 +18,7 @@ export default function HomePage() {
       <div className="card-gradient max-w-3xl mx-auto text-center">
         <div className="mb-6">
           <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-            <Shield className="h-8 w-8 text-primary" />
+            <Shell className="h-8 w-8 text-primary" />
           </div>
           <h3 className="text-xl font-semibold text-text mb-2">Google Forms + Proctorap</h3>
           <p className="text-text-secondary">Your existing form, now with enterprise-grade security.</p>
@@ -47,7 +47,7 @@ export default function HomePage() {
       <div className="card-gradient max-w-3xl mx-auto text-center">
         <div className="mb-6">
           <div className="w-16 h-16 bg-blue-600/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-            <Shield className="h-8 w-8 text-blue-500" />
+            <Shell className="h-8 w-8 text-blue-500" />
           </div>
           <h3 className="text-xl font-semibold text-text mb-2">Microsoft Forms + Proctorap</h3>
           <p className="text-text-secondary">Advanced proctoring for Microsoft Forms, activated in seconds.</p>
@@ -76,7 +76,7 @@ export default function HomePage() {
       <div className="card-gradient max-w-3xl mx-auto text-center">
         <div className="mb-6">
           <div className="w-16 h-16 bg-orange-500/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-            <Shield className="h-8 w-8 text-orange-500" />
+            <Shell className="h-8 w-8 text-orange-500" />
           </div>
           <h3 className="text-xl font-semibold text-text mb-2">Custom Forms + Proctorap</h3>
           <p className="text-text-secondary">Secure Typeform, SurveyMonkey, or any online assessment instantly.</p>
@@ -105,7 +105,7 @@ export default function HomePage() {
       <div className="card-gradient max-w-3xl mx-auto text-center">
         <div className="mb-6">
           <div className="w-16 h-16 bg-green-500/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-            <Shield className="h-8 w-8 text-green-500" />
+            <Shell className="h-8 w-8 text-green-500" />
           </div>
           <h3 className="text-xl font-semibold text-text mb-2">LMS Integration</h3>
           <p className="text-text-secondary">Easily integrate with Canvas, Moodle or other learning management systems.</p>
@@ -134,7 +134,7 @@ export default function HomePage() {
       <div className="card-gradient max-w-3xl mx-auto text-center">
         <div className="mb-6">
           <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-            <Shield className="h-8 w-8 text-primary" />
+            <Shell className="h-8 w-8 text-primary" />
           </div>
           <h3 className="text-xl font-semibold text-text mb-2">Any Assessment Platform</h3>
           <p className="text-text-secondary">If it's web-based, Proctorap can protect it.</p>
@@ -206,7 +206,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-2">
-              <Shield className="h-8 w-8 text-primary" />
+              <Shell className="h-8 w-8 text-primary" />
               <span className="text-xl font-bold text-gradient">Proctorap</span>
             </div>
             <div className="hidden md:flex items-center space-x-8">
@@ -641,7 +641,7 @@ export default function HomePage() {
             
             <div className="stats-card text-center">
               <div className="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <Shield className="h-8 w-8 text-accent" />
+                <Shell className="h-8 w-8 text-accent" />
               </div>
               <h3 className="text-xl font-semibold text-text mb-2">Privacy Focused</h3>
               <p className="text-text-secondary">
@@ -754,7 +754,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="col-span-1 md:col-span-2">
               <div className="flex items-center space-x-2 mb-4">
-                <Shield className="h-6 w-6 text-primary" />
+                <Shell className="h-6 w-6 text-primary" />
                 <span className="text-lg font-bold text-gradient">Proctorap</span>
               </div>
               <p className="text-text-secondary mb-4">

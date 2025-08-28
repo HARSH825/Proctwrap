@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { useParams, useSearchParams, useRouter } from 'next/navigation';
-import { Shield, User, Mail, CheckCircle, AlertTriangle, ArrowLeft } from 'lucide-react';
+import { Shell, User, Mail, CheckCircle, AlertTriangle, ArrowLeft } from 'lucide-react';
 import { testAPI, studentAPI, attemptAPI } from '../../../lib/api';
 
 export default function StudentEntryPage() {
@@ -99,7 +99,7 @@ export default function StudentEntryPage() {
       <div className="min-h-screen hero-section flex items-center justify-center">
         <div className="card text-center max-w-md mx-auto">
           <div className="w-16 h-16 bg-gradient-to-r from-primary to-primary-light rounded-2xl flex items-center justify-center mx-auto mb-6">
-            <Shield className="h-10 w-10" style={{ color: 'var(--color-background)' }} />
+            <Shell className="h-10 w-10" style={{ color: 'var(--color-background)' }} />
           </div>
           <h2 className="text-2xl font-bold mb-4" style={{ color: 'var(--color-text)' }}>
             Initializing Secure Environment
@@ -121,7 +121,7 @@ export default function StudentEntryPage() {
           <div className="max-w-7xl mx-auto flex items-center justify-between">
             <div className="flex items-center space-x-3">
               <div className="p-2 bg-gradient-to-r from-primary to-primary-light rounded-lg">
-                <Shield className="h-6 w-6" style={{ color: 'var(--color-background)' }} />
+                <Shell className="h-6 w-6" style={{ color: 'var(--color-background)' }} />
               </div>
               <div>
                 <h1 className="text-xl font-bold" style={{ color: 'var(--color-text)' }}>Proctorap</h1>
@@ -129,7 +129,7 @@ export default function StudentEntryPage() {
               </div>
             </div>
             <div className="flex items-center space-x-2">
-              <Shield className="h-5 w-5" style={{ color: 'var(--color-primary)' }} />
+              <Shell className="h-5 w-5" style={{ color: 'var(--color-primary)' }} />
               <span className="text-sm font-medium" style={{ color: 'var(--color-text)' }}>Secure Test Environment</span>
             </div>
           </div>
@@ -187,7 +187,7 @@ export default function StudentEntryPage() {
             <div className="grid md:grid-cols-2 gap-6 mb-8">
               <div className="p-6 rounded-xl" style={{ backgroundColor: 'rgba(255, 255, 255, 0.05)' }}>
                 <div className="flex items-center space-x-3 mb-4">
-                  <Shield className="h-8 w-8" style={{ color: 'var(--color-primary)' }} />
+                  <Shell className="h-8 w-8" style={{ color: 'var(--color-primary)' }} />
                   <h4 className="text-xl font-semibold" style={{ color: 'var(--color-text)' }}>
                     Monitoring Active
                   </h4>

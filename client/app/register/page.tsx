@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Shield, User, Mail, Lock, AlertCircle, CheckCircle } from 'lucide-react';
+import { Shell, User, Mail, Lock, AlertCircle, CheckCircle } from 'lucide-react';
 import { authAPI } from '../../lib/api';
 
 export default function RegisterPage() {
@@ -68,7 +68,7 @@ export default function RegisterPage() {
         {/* Logo/Brand */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center p-3 bg-gradient-to-r from-primary to-primary-light rounded-2xl mb-4">
-            <Shield className="h-10 w-10 text-background" />
+            <Shell className="h-10 w-10 text-background" />
           </div>
           <h1 className="text-3xl font-bold text-gradient mb-2">Create Account</h1>
           <p className="text-text-secondary">Join Proctorap and start protecting your forms</p>
