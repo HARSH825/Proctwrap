@@ -84,7 +84,7 @@ export default function DashboardPage() {
     const originalText = button.innerHTML;
     
     try {
-      const protectedUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/p/${slug}`;
+      const protectedUrl = `https://proctorap.harshdev.cloud/p/${slug}`;
       await navigator.clipboard.writeText(protectedUrl);
       
       button.innerHTML = '✓ Copied!';
