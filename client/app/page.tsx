@@ -243,7 +243,7 @@ export default function HomePage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
               <Link href="/register" className="btn btn-primary px-8 py-4 text-base">
-                Join Early Access
+                Start Now
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
               <Link href="#demo" className="btn btn-outline px-8 py-4 text-base">

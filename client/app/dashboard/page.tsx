@@ -209,7 +209,7 @@ export default function DashboardPage() {
               
               <div>
                 <label className="block text-sm font-medium mb-2" style={{ color: 'var(--color-text)' }}>
-                  Form URL (Google Forms or Microsoft Forms)
+                  Test URL (Google forms or Microsoft or any platform)
                 </label>
                 <input
                   type="url"
