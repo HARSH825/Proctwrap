@@ -11,7 +11,7 @@ const createTest = async (req, res) => {
       data: { title, url, slug, teacherId }
     });
 
-    const protectedUrl = `${process.env.FE_URL}/p/${slug}`;
+    const protectedUrl = `${process.env.FRONTEND_URL}/p/${slug}`;
     res.status(201).json({ "url": protectedUrl });
     
   } catch (err) {
