@@ -51,10 +51,10 @@ export default function TestDetailsPage() {
 
     // Violation weights (higher weight = more severe violation)
     const weights = {
-      tabSwitchCount: 10,      // Each tab switch reduces score by 10
-      fullscreenExitCount: 15, // Each fullscreen exit reduces score by 15
-      multipleFacesCount: 20,  // Each multiple face detected reduces score by 20
-      phoneDetectionCount: 25  // Each phone detected reduces score by 25
+      tabSwitchCount: 10,      
+      fullscreenExitCount: 10, 
+      multipleFacesCount: 15,  
+      phoneDetectionCount: 25  
     };
 
     // Calculate total deduction with edge case handling
@@ -69,7 +69,7 @@ export default function TestDetailsPage() {
 
     // Additional penalty for high violation density
     const totalViolations = getTotalViolations(attempt);
-    if (totalViolations > 5) {
+    if (totalViolations >= 5) {
       score -= 20; // Extra penalty for excessive violations
     }
 
@@ -84,7 +84,7 @@ export default function TestDetailsPage() {
 
   const getTrustScoreColor = (score: number) => {
     if (score >= 80) return { color: 'var(--color-success)', bg: 'rgba(16, 185, 129, 0.1)', label: 'High' };
-    if (score >= 60) return { color: 'var(--color-warning)', bg: 'rgba(245, 158, 11, 0.1)', label: 'Medium' };
+    if (score >= 65) return { color: 'var(--color-warning)', bg: 'rgba(245, 158, 11, 0.1)', label: 'Medium' };
     if (score >= 40) return { color: 'var(--color-danger)', bg: 'rgba(239, 68, 68, 0.1)', label: 'Low' };
     return { color: 'var(--color-danger)', bg: 'rgba(239, 68, 68, 0.2)', label: 'Critical' };
   };
